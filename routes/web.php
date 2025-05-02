@@ -12,7 +12,6 @@ use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\TemporaryRentController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,8 +67,5 @@ Route::get('/daftarruang', [DaftarRuangController::class, 'index'])->name('dafta
 Route::get('/showruang/{room:code}', [DaftarRuangController::class, 'show'])->name('showruang');
 Route::get('/daftarpinjam', [DaftarPinjamController::class, 'index'])->name('daftarpinjam');
 Route::post('/daftarpinjam', [DaftarPinjamController::class, 'store'])->name('daftarpinjam.store');
-Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
-Route::get('/api/calendar/events', [CalendarController::class, 'events'])->name('calendar.events');
-Route::post('/api/calendar/events', [CalendarController::class, 'store'])->name('calendar.store');
 Route::post('/logout', [LoginController::class, 'logout']);
 });

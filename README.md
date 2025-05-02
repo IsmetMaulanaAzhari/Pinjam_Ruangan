@@ -2,59 +2,70 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 -->
 
-# RoomBooking's Web
-Reserve Room's Web is a web-based room reservation platform designed to facilitate the scheduling and management of room usage across various campus locations. Built using the PHP programming language with the Laravel framework and powered by a MySQL database, this platform offers a user-friendly and functional interface.  Reserve Room's Web makes it easy for users to check room availability, make quick reservations, and receive instant confirmations. With comprehensive event management features, real-time status updates, and robust database integration, 
+# Peminjaman Ruangan
+Web Peminjaman ruangan adalah platform berbasis web yang dirancang untuk memudahkan proses peminjaman ruangan di lingkungan kampus. Aplikasi ini dibangun menggunakan bahasa pemrograman PHP dengan framework Laravel, serta didukung oleh database MySQL. Dengan antarmuka yang sederhana dan fungsional, pengguna dapat melihat ketersediaan ruangan, melakukan reservasi dengan cepat, dan mendapatkan konfirmasi secara instan. Fitur-fitur seperti manajemen acara, pembaruan status real-time, dan integrasi data yang solid membuat sistem ini cocok digunakan oleh institusi pendidikan atau organisasi dengan banyak ruang kegiatan.
 ## Preview
-<img src="https://i.ibb.co/gV7LJ2n/Reserve-room-web-1.png" style="max-width:100%">
+<img src="public/assets/images/p1.jpg" style="max-width:100%">
+<img src="public/assets/images/p2.jpg" style="max-width:100%">
+<img src="public/assets/images/p3.jpg" style="max-width:100%">
+<img src="public/assets/images/p4.jpg" style="max-width:100%">
 
-## Requirement
+## Membutuhkan
 - PHP
 - Composer
 - Laravel
 - MySql
 
-## Features
+## Fitur yang ada
 -  Admin
 -  Authentication
 -  Login (Admin/User)
 -  Reserve Room
 -  etc
 
-## Instalation
-1. Download or clone this project.
+## instalasi
+1. Download atau clone project ini.
    ```git
-   https://github.com/UkiMahfuda/web-pinjam-ruang.git
+   https://github.com/IsmetMaulanaAzhari/Pinjam_Ruangan
    ```
-2. Navigate to the `app-pinjam-ruang` folder.
+2. Pindah ke dalam folder `Pinjam-Ruang`.
    ```sh
-   cd web-pinjam-ruang
+   cd Pinjam_Ruangan
    ```
-3. Install the required components using Composer.
+3. Install komponen yang diperlukan menggunakan composer.
    ```sh
    composer install
    ```
-4. Copy the `.env.example` file to `.env`.
+4. Jika composer install tidak bisa jalan, maka kamu harus mengupdate composer terlebih dahulu.
+   ```sh
+   composer update
+   ```
+4. Ubah file `.env.example` menjadi `.env`(kamu juga bisa merubah nama database sesuai keinginan kamu).
    ```sh
    cp .env.example .env
    ```
-5. Generate the `APP_KEY`.
+5. Jika mysql atau database yang kamu gunakan tidak menggunakan password maka hapus bagian passwordnya
+   ```sh
+   DB_PASSWORD=admin123 menjadi DB_PASSWORD=
+   ```
+6. Buatlah `APP_KEY`.
    ```sh
    php artisan key:generate
    ```
-6. Install Storage.
+7. Install Storage.
    ```sh
    php artisan storage:link
    ```
-7. Perform the database migration.
+8. Lakukan migrasi database.
    ```sh
    php artisan migrate:fresh --seed
    ```
-8. After successful migration, run the application.
+9. Setelah migrasi database telah berhasil, jalankan aplikasinya.
    ```sh
    php artisan serve
    ```
-9. Open your browser and go to `127.0.0.1:8000` to use the application.
+10. Buka browser anda dan buka `127.0.0.1:8000` untuk menggunakan aplikasinya.
    
-10. Login:
-    - email: mahasiswa@gmail.com password: mahasiswa -> User
-    - email: admin@gmail.com password: admin -> Admin
+11. Login:
+    - email: 3337230060@untirta.ac.id password: rama1029 -> User
+    - email: 3337230014@untirta.ac.id password: ismet -> Admin

@@ -61,9 +61,27 @@ class DashboardRentController extends Controller
     $validatedData = $request->validate([
         'room_id' => 'required',
         'time_start_use' => 'required',
-        'time_end_use' => 'required',
+        'time_end_use' => 'required|after:time_start_use',
         'purpose' => 'required|max:250',
     ]);
+
+    // Validasi ruangan tidak bentrok
+    $cekBentrok = Rent::where('room_id', $request->room_id)
+        ->where(function ($query) use ($request) {
+            $query->whereBetween('time_start_use', [$request->time_start_use, $request->time_end_use])
+                  ->orWhereBetween('time_end_use', [$request->time_start_use, $request->time_end_use])
+                  ->orWhere(function($query) use ($request) {
+                      $query->where('time_start_use', '<', $request->time_start_use)
+                            ->where('time_end_use', '>', $request->time_end_use);
+                  });
+        })
+        ->where('status', '!=', 'ditolak') // opsional: abaikan yang ditolak
+        ->exists();
+
+    if ($cekBentrok) {
+        return back()->withErrors(['Ruangan sudah dibooking pada waktu tersebut.'])->withInput();
+    }
+
     $validatedData['user_id'] = auth()->user()->id;
     $validatedData['transaction_start'] = now();
     $validatedData['status'] = 'pending';
@@ -71,15 +89,13 @@ class DashboardRentController extends Controller
 
     Rent::create($validatedData);
 
-    // Periksa peran pengguna
     if (auth()->user()->role_id === 1) {
-        // Admin
         return redirect('/dashboard/rents')->with('rentSuccess', 'Peminjaman diajukan. Harap tunggu konfirmasi admin.');
     } elseif (auth()->user()->role_id === 2) {
-        // User
         return redirect('/daftarpinjam')->with('rentSuccess', 'Peminjaman diajukan. Harap tunggu konfirmasi admin.');
     }
 }
+
 
 
     /**
