@@ -77,7 +77,20 @@ class DashboardAdminController extends Controller
         return json_encode($user);
     }
 
-    /**
+    public function editRoom($id)
+    {
+        $room = Room::findOrFail($id);
+        return view('dashboard.admin.edit-room', compact('room'));
+    }
+
+    public function updateRoom(Request $request, $id)
+    {
+        $room = Room::findOrFail($id);
+        $room->update($request->all());
+
+        return redirect()->route('dashboard.admin')->with('success', 'Ruangan berhasil diubah');
+    }
+        /**
      * Update the specified resource in storage.
      *
  * @param  \Illuminate\Http\Request  $request

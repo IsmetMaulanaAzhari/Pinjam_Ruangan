@@ -1,3 +1,4 @@
+  {{--
 <footer id="footer" class="footer-area pt-50">
     <div class="container">
         <div class="footer-credit">
@@ -15,7 +16,7 @@
                 <div class="col-md-6 ">
                     <div class="text-md-right text-center">
                         <p>
-                            <span>Developed by Pioneers Team </span>
+                            <span>pusing wak</span>
                             {{-- <span>& Designed by UIdeck </span> --}}
                         </p>
                     </div>

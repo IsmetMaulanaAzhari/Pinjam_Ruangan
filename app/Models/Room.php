@@ -11,16 +11,19 @@ class Room extends Model
 
     protected $guarded = ['id'];
 
+    // Relasi ke tabel buildings
     public function building()
     {
         return $this->belongsTo(Building::class);
     }
 
-    public function room()
+    // Relasi ke tabel rents
+    public function rentals()
     {
-        return $this->hasMany(Rent::class);
+        return $this->hasMany(Rent::class, 'room_id');
     }
 
+    // Override route key untuk menggunakan 'code' sebagai parameter
     public function getRouteKeyName()
     {
         return 'code';

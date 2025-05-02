@@ -1,8 +1,8 @@
 <aside class="sidebar">
     <a href="#" class="sidebar-logo">
         <div class="d-flex justify-content-start align-items-center">
-            <img src="{{ asset('assets/images/UNIVERSITAS TEKNOKRAT.png') }}" style="width: 50px" alt="">
-            <span>Pinjam Ruang</span>
+            <img src="{{ asset('assets/images/LOGO_ORIGINAL.png') }}" style="width: 50px" alt="">
+            <span>dashboard Admin</span>
         </div>
 
         <button id="toggle-navbar" onclick="toggleNavbar()">

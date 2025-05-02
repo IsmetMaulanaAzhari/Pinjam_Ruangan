@@ -11,13 +11,15 @@ class Rent extends Model
 
     protected $guarded = ['id'];
 
+    // Relasi ke tabel rooms
     public function room()
     {
-        return $this->belongsTo(Room::class);
+        return $this->belongsTo(Room::class, 'room_id');
     }
 
+    // Relasi ke tabel users
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

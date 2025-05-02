@@ -1,7 +1,5 @@
 <?php
 
-namespace App;
-
 use App\Models\Room;
 use App\Models\Building;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +12,7 @@ use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\TemporaryRentController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,19 +31,23 @@ Route::get('/', function () {
     ]);
 });
 
+// Routes untuk login dan register
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/register', [RegisterController::class, 'register']);
 
+// Routes yang membutuhkan autentikasi
 Route::middleware(['auth'])->group(function () {
 
+    // Dashboard Overview
     Route::get('/dashboard/overview', function () {
         return view('/dashboard/overview/index', [
             'title' => "Dashboard Admin",
         ]);
     });
 
+    // Routes dengan middleware tambahan (checkRole)
     Route::middleware(['checkRole'])->group(function () {
         Route::get('/dashboard/temporaryRents', [TemporaryRentController::class, 'index']);
         Route::get('/dashboard/temporaryRents/{id}/acceptRents', [TemporaryRentController::class, 'acceptRents']);
@@ -53,19 +56,20 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('dashboard/rooms', DashboardRoomController::class);
         Route::resource('dashboard/users', DashboardUserController::class);
         Route::resource('dashboard/admin', DashboardAdminController::class);
-        Route::resource('/daftarpinjam', DashboardRentController::class);
         Route::get('dashboard/rents/{id}/endTransaction', [DashboardRentController::class, 'endTransaction']);
         Route::get('dashboard/users/{id}/makeAdmin', [DashboardUserController::class, 'makeAdmin']);
         Route::get('dashboard/admin/{id}/removeAdmin', [DashboardAdminController::class, 'removeAdmin']);
+        Route::get('/dashboard/admin/room/{id}/edit', [DashboardAdminController::class, 'editRoom'])->name('admin.room.edit');
+    Route::put('/dashboard/admin/room/{id}', [DashboardAdminController::class, 'updateRoom'])->name('admin.room.update');
+    });
 
-        });
-        
-    Route::resource('/daftarpinjam', DashboardRentController::class);
-    Route::get('/daftarruang', [DaftarRuangController::class, 'index']);
-    Route::get('/showruang/{room:code}', [DaftarRuangController::class, 'show']);
-    Route::get('/daftarpinjam', [DaftarPinjamController::class, 'index']);
-    Route::post('/logout', [LoginController::class, 'logout']);
-
+// Routes untuk daftar ruang dan daftar pinjam
+Route::get('/daftarruang', [DaftarRuangController::class, 'index'])->name('daftarruang');
+Route::get('/showruang/{room:code}', [DaftarRuangController::class, 'show'])->name('showruang');
+Route::get('/daftarpinjam', [DaftarPinjamController::class, 'index'])->name('daftarpinjam');
+Route::post('/daftarpinjam', [DaftarPinjamController::class, 'store'])->name('daftarpinjam.store');
+Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
+Route::get('/api/calendar/events', [CalendarController::class, 'events'])->name('calendar.events');
+Route::post('/api/calendar/events', [CalendarController::class, 'store'])->name('calendar.store');
+Route::post('/logout', [LoginController::class, 'logout']);
 });
-
-

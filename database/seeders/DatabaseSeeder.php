@@ -53,320 +53,174 @@ class DatabaseSeeder extends Seeder
             'nomor_induk' => '21312109',
             'role_id' => 2,
         ]);
-
-        Faculty::create([
-            'code' => 'FTIK',
-            'name' => 'Fakultas Teknik dan Ilmu Komputer',
+        
+        user::create([
+            'name' => 'Ramadhan Umbara',
+            'email' => '3337230060@untirta.ac.id',
+            'password' => bcrypt('rama1029'),
+            'nomor_induk' => '3337230060',
+            'role_id' => 2,
         ]);
-        Faculty::create([
-            'code' => 'FEB',
-            'name' => 'Fakultas Ekonomi Bisnis',
-        ]);
-        Faculty::create([
-            'code' => 'FSIP',
-            'name' => 'Fakultas Sastra dan Ilmu Pendidikan',
-        ]);
-
-        Building::create([
-            'code' => 'ged-a',
-            'name' => 'Gedung A',
-            'faculty_id' => 2,
+        
+        user::create([
+            'name' => 'Ismet',
+            'email' => '3337230014@untirta.ac.id',
+            'password' => bcrypt('ismet'),
+            'nomor_induk' => '3337230014',
+            'role_id' => 1,
         ]);
 
         Building::create([
-            'code' => 'ged-gsg',
-            'name' => 'Gedung GSG',
-            'faculty_id' => 1,
+            'code' => 'R',
+            'name' => 'Gedung U',
         ]);
 
         Building::create([
-            'code' => 'ged-ict',
-            'name' => 'Gedung ICT',
-            'faculty_id' => 1,
+            'code' => 'BR',
+            'name' => 'Gedung BR',
         ]);
 
         Building::create([
-            'code' => 'ged-b',
-            'name' => 'Gedung B',
-            'faculty_id' => 3,
+            'code' => 'COE',
+            'name' => 'Gedung COE',
+        ]);
+
+        Building::create([
+            'code' => 'Aula',
+            'name' => 'Aula',
         ]);
 
         Room::create([
-            'code' => 'Lab 1 GSG',
-            'name' => 'Lab 1 GSG',
-            'img' => 'assets/images/ruang/Lab2A.jpeg',
+            'code' => '2-1',
+            'name' => 'R 2-1',
+            'img' => 'assets/images/ruang/r1.jpg',
             'floor' => 2,
             'status' => false,
             'capacity' => 50,
-            'type' => 'Lab Komputer',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 2,
+            'type' => 'Ruang Kelas',
+            'description' => 'Ruangan dengan fasilitas TV sebagai media presentasi ataupun pembelajaran, dengan pencahayaan yang redup sehingga bikin ngantuk',
+            'building_id' => 1,
+        ]);
+
+        Room::create([
+            'code' => '2-2',
+            'name' => 'R 2-2',
+            'img' => 'assets/images/ruang/r1.jpg',
+            'floor' => 2,
+            'status' => false,
+            'capacity' => 50,
+            'type' => 'Ruang Kelas',
+            'description' => 'Ruangan dengan fasilitas TV sebagai media presentasi ataupun pembelajaran, dengan pencahayaan yang redup sehingga bikin ngantuk',
+            'building_id' => 1,
+        ]);
+
+        Room::create([
+            'code' => '2-3',
+            'name' => 'R 2-3',
+            'img' => 'assets/images/ruang/r1.jpg',
+            'floor' => 2,
+            'status' => false,
+            'capacity' => 50,
+            'type' => 'Ruang Kelas',
+            'description' => 'Ruangan dengan fasilitas TV sebagai media presentasi ataupun pembelajaran, dengan pencahayaan yang redup sehingga bikin ngantuk',
+            'building_id' => 1,
         ]);
 
         
         Room::create([
-            'code' => 'Lab 2 GSG',
-            'name' => 'Lab 2 GSG',
-            'img' => 'assets/images/ruang/LabICT.jpeg',
-            'floor' => 2,
-            'status' => false,
-            'capacity' => 50,
-            'type' => 'Lab Komputer',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 2,
-        ]);
-
-        Room::create([
-            'code' => 'Lab 3 GSG',
-            'name' => 'Lab 3 GSG',
-            'img' => 'assets/images/ruang/LabDigital.jpeg',
-            'floor' => 3,
-            'status' => false,
-            'capacity' => 50,
-            'type' => 'Lab Komputer',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 2,
-        ]);
-        
-        Room::create([
-            'code' => 'Lab 4 GSG',
-            'name' => 'Lab 4 GSG',
-            'img' => 'assets/images/ruang/LabICT.jpeg',
-            'floor' => 3,
-            'status' => false,
-            'capacity' => 50,
-            'type' => 'Lab Komputer',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 2,
-        ]);
-
-        Room::create([
-            'code' => 'Lab 1 A',
-            'name' => 'Lab 1 A',
-            'img' => 'assets/images/ruang/Lab2A.jpeg',
-            'floor' => 3,
-            'status' => false,
-            'capacity' => 50,
-            'type' => 'Lab Komputer',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 1,
-        ]);
-
-        Room::create([
-            'code' => 'Lab Bisnis Digital',
-            'name' => 'Lab Bisnis Digital',
-            'img' => 'assets/images/ruang/LabDigital.jpeg',
-            'floor' => 3,
-            'status' => false,
-            'capacity' => 40,
-            'type' => 'Lab Komputer',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 1,
-        ]);
-        
-        Room::create([
-            'code' => 'Lab 2 A',
-            'name' => 'Lab 2 A',
-            'img' => 'assets/images/ruang/Lab2A.jpeg',
-            'floor' => 3,
-            'status' => false,
-            'capacity' => 40,
-            'type' => 'Lab Komputer',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 1,
-        ]);
-
-        Room::create([
-            'code' => 'Lab Bahasa',
-            'name' => 'Lab Bahasa',
-            'img' => 'assets/images/ruang/Lab2A.jpeg',
-            'floor' => 2,
-            'status' => false,
-            'capacity' => 40,
-            'type' => 'Lab Komputer',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 1,
-        ]);
-
-         Room::create([
-            'code' => 'Aula A',
-            'name' => 'Aula A',
-            'img' => 'assets/images/ruang/Lab2A.jpeg',
-            'floor' => 4,
-            'status' => false,
-            'capacity' => 100,
-            'type' => 'Aula',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 1,
-        ]);
-
-        Room::create([
-            'code' => '401 A',
-            'name' => '401 A',
-            'img' => 'assets/images/ruang/LabDigital.jpeg',
-            'floor' => 4,
-            'status' => false,
-            'capacity' => 80,
-            'type' => 'Ruang Kelas',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 1,
-        ]);
-
-        Room::create([
-            'code' => '402 A',
-            'name' => '402 A',
-            'img' => 'assets/images/ruang/LabDigital.jpeg',
-            'floor' => 4,
-            'status' => false,
-            'capacity' => 80,
-            'type' => 'Ruang Kelas',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 1,
-        ]);
-
-        Room::create([
-            'code' => '209',
-            'name' => '209',
-            'img' => 'assets/images/ruang/Lab2A.jpeg',
-            'floor' => 2,
-            'status' => false,
-            'capacity' => 45,
-            'type' => 'Ruang Kelas',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 1,
-        ]);
-
-        Room::create([
-            'code' => '201 B',
-            'name' => '201 B',
-            'img' => 'assets/images/ruang/201b.jpeg',
-            'floor' => 2,
-            'status' => false,
-            'capacity' => 50,
-            'type' => 'Ruang Kelas',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 4,
-        ]);
-
-        Room::create([
-            'code' => '202 B',
-            'name' => '202 B',
-            'img' => 'assets/images/ruang/202b.jpeg',
-            'floor' => 2,
-            'status' => false,
-            'capacity' => 50,
-            'type' => 'Ruang Kelas',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 4,
-        ]);
-
-        Room::create([
-            'code' => '203 B',
-            'name' => '203 B',
-            'img' => 'assets/images/ruang/201b.jpeg',
-            'floor' => 2,
-            'status' => false,
-            'capacity' => 40,
-            'type' => 'Ruang Kelas',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 4,
-        ]);
-
-        Room::create([
-            'code' => '204 B',
-            'name' => '204 B',
-            'img' => 'assets/images/ruang/203b.jpeg',
-            'floor' => 2,
-            'status' => false,
-            'capacity' => 50,
-            'type' => 'Ruang Kelas',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 4,
-        ]);
-
-        Room::create([
-            'code' => '301 B',
-            'name' => '301 B',
-            'img' => 'assets/images/ruang/301b.jpeg',
-            'floor' => 3,
-            'status' => false,
-            'capacity' => 50,
-            'type' => 'Ruang Kelas',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 4,
-        ]);
-
-        Room::create([
-            'code' => '302 B',
-            'name' => '302 B',
-            'img' => 'assets/images/ruang/201b.jpeg',
-            'floor' => 3,
-            'status' => false,
-            'capacity' => 50,
-            'type' => 'Ruang Kelas',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 4,
-        ]);
-        
-        Room::create([
-            'code' => '303 B',
-            'name' => '303 B',
-            'img' => 'assets/images/ruang/202b.jpeg',
-            'floor' => 3,
-            'status' => false,
-            'capacity' => 50,
-            'type' => 'Ruang Kelas',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 4,
-        ]);
-
-        Room::create([
-            'code' => '304 B',
-            'name' => '304 B',
-            'img' => 'assets/images/ruang/203b.jpeg',
-            'floor' => 3,
-            'status' => false,
-            'capacity' => 40,
-            'type' => 'Ruang Kelas',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 4,
-        ]);
-
-        Room::create([
-            'code' => 'Lab Software',
-            'name' => 'Lab Software',
-            'img' => 'assets/images/ruang/LabICT.jpeg',
-            'floor' => 2,
-            'status' => false,
-            'capacity' => 50,
-            'type' => 'Lab Komputer',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
-            'building_id' => 3,
-        ]);
-
-        Room::create([
-            'code' => 'Lab Gambar',
-            'name' => 'Lab Gambar',
-            'img' => 'assets/images/ruang/LabGambar.jpeg',
+            'code' => '1-1',
+            'name' => 'BR 1-1',
+            'img' => 'assets/images/ruang/br1.jpg',
             'floor' => 1,
             'status' => false,
             'capacity' => 50,
             'type' => 'Ruang Kelas',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
+            'description' => 'Ruangan dengan fasilitas TV sebagai media presentasi ataupun pembelajaran, dengan pencahayaan yang terang dan AC yang kurang dingin sehingga gk bikin ngantuk',
+            'building_id' => 2,
+        ]);
+
+        Room::create([
+            'code' => '1-2',
+            'name' => 'BR 1-2',
+            'img' => 'assets/images/ruang/br2.jpg',
+            'floor' => 1,
+            'status' => false,
+            'capacity' => 50,
+            'type' => 'Ruang Kelas',
+            'description' => 'Ruangan dengan fasilitas TV sebagai media presentasi ataupun pembelajaran, dengan pencahayaan yang terang dan AC yang kurang dingin sehingga gk bikin ngantuk',
+            'building_id' => 2,
+        ]);
+
+        Room::create([
+            'code' => '1-3',
+            'name' => 'BR 1-3',
+            'img' => 'assets/images/ruang/br2.jpg',
+            'floor' => 1,
+            'status' => false,
+            'capacity' => 50,
+            'type' => 'Ruang Kelas',
+            'description' => 'Ruangan dengan fasilitas TV sebagai media presentasi ataupun pembelajaran, dengan pencahayaan yang terang dan AC yang kurang dingin sehingga gk bikin ngantuk',
+            'building_id' => 2,
+        ]);
+
+        Room::create([
+            'code' => '3-1',
+            'name' => 'COE 3-1',
+            'img' => 'assets/images/ruang/coeg.jpg',
+            'floor' => 3,
+            'status' => false,
+            'capacity' => 50,
+            'type' => 'Ruang Kelas',
+            'description' => 'Ruangan dengan fasilitas proyektor sebagai media presentasi ataupun pembelajaran, tapi anehnya ruangan tersebut cukup terpapar cahaya sehingga proyektor tidak bekerja secara maksimal, tapi nilai plus nya ruangannya gede dan luas',
             'building_id' => 3,
         ]);
 
         Room::create([
-            'code' => '301 ICT B',
-            'name' => '301 ICT B',
-            'img' => 'assets/images/ruang/301ICT.jpeg',
+            'code' => '3-2',
+            'name' => 'COE 3-2',
+            'img' => 'assets/images/ruang/coek.jpg',
             'floor' => 3,
             'status' => false,
-            'capacity' => 100,
+            'capacity' => 20,
             'type' => 'Ruang Kelas',
-            'description' => 'Laboratorium kampus adalah fasilitas vital dalam lingkungan pendidikan tinggi, menyediakan lingkungan yang didedikasikan untuk eksperimen, riset, dan kegiatan praktis di berbagai bidang studi.',
+            'description' => 'Ruangan dengan fasilitas TV sebagai media presentasi ataupun pembelajaran, ruangan paling kecil namun sesuai dengan kapasitasnya, namun minusnya colokan dibagian belakang tidak bekerja',
+            'building_id' => 3,
+        ]);
+        
+        Room::create([
+            'code' => '3-3',
+            'name' => 'COE 3-3',
+            'img' => 'assets/images/ruang/coek.jpg',
+            'floor' => 3,
+            'status' => false,
+            'capacity' => 20,
+            'type' => 'Ruang Kelas',
+            'description' => 'Ruangan dengan fasilitas TV sebagai media presentasi ataupun pembelajaran, ruangan paling kecil namun sesuai dengan kapasitasnya, namun minusnya colokan dibagian belakang tidak bekerja',
             'building_id' => 3,
         ]);
 
+        Room::create([
+            'code' => '3-4',
+            'name' => 'COE 3-4',
+            'img' => 'assets/images/ruang/coegkv.jpg',
+            'floor' => 3,
+            'status' => false,
+            'capacity' => 50,
+            'type' => 'Ruang Kelas',
+            'description' => 'Ruangan dengan fasilitas TV sebagai media presentasi ataupun pembelajaran, ruangan dengan interior paling berbeda dan nyaman menurut admin, ada jendela di sebelah kanan yang memancarkan cahaya yang cukup untuk mencerahkan ruangan',
+            'building_id' => 3,
+        ]);
+
+        Room::create([
+            'code' => 'Aula',
+            'name' => 'Aula',
+            'img' => 'assets/images/ruang/aula2.jpg',
+            'floor' => 1,
+            'status' => false,
+            'capacity' => 100,
+            'type' => 'Ruang Umum',
+            'description' => 'Aula dengan fasilitas proyektor sebagai media presentasi, namun anehnya aula ini sangat terpapar oleh cahaya, sehingga membuat proyektor tidak bekerja secara maksimal, di sini juga banyak colokan yang scam',
+            'building_id' => 4,
+        ]);
     }
 }

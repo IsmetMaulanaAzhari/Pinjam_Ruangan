@@ -38,7 +38,7 @@ body {
     font-family: var(--body-font);
     font-size: var(--normal-font-size);
     font-weight: var(--font-medium);
-    background-color: var(--first-color-lighten);
+    background-color: var(--second-color);
     color: var(--text-color);
     line-height: 1.6;
 }

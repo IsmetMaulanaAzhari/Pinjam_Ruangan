@@ -22,9 +22,7 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-7">
                     <div class="section-title">
-                        <h2 class="wow fadeInUp" data-wow-delay=".2s">{{ $title }} </h2>
-                        <p class="wow fadeInUp" data-wow-delay=".4s">Pemberitahuan dari admin akan muncul di daftar
-                            peminjaman ini. Silahkan tunggu sampai dapat persetujuan dari admin.</p>
+                        <h2 class="wow fadeInUp" data-wow-delay=".2s">Daftar Peminjaman</h2>
                     </div>
                 </div>
             </div>

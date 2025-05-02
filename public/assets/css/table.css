@@ -15,12 +15,14 @@
     max-width: 100%;
     white-space: nowrap;
     background-color: white;
+    color: #000; /* Warna teks hitam */
 }
 
 .fl-table td,
 .fl-table th {
     text-align: center;
     padding: 8px;
+    color: #000; /* Warna teks hitam */
 }
 
 .fl-table td {
@@ -29,17 +31,23 @@
 }
 
 .fl-table thead th {
-    color: #ffffff;
-    background: #324960;
+    color: #000; /* Warna teks hitam untuk header */
+    background: #e3db82; /* Warna kuning gelap */
 }
 
 .fl-table thead th:nth-child(odd) {
-    color: #ffffff;
-    background: #516b85;
+    color: #000; /* Warna teks hitam untuk header */
+    background: #fde802; /* Warna kuning terang */
 }
 
 .fl-table tr:nth-child(odd) {
     background: #f8f8f8;
+    color: #000; /* Warna teks hitam untuk baris ganjil */
+}
+
+.fl-table tr:nth-child(even) {
+    background: #ffffff;
+    color: #000; /* Warna teks hitam untuk baris genap */
 }
 
 /* Responsive */
@@ -84,6 +92,7 @@
         width: 120px;
         font-size: 13px;
         text-overflow: ellipsis;
+        color: #000; /* Warna teks hitam untuk tampilan responsif */
     }
     .fl-table thead th {
         text-align: left;
