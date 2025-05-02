@@ -5,10 +5,10 @@
 # Peminjaman Ruangan
 Web Peminjaman ruangan adalah platform berbasis web yang dirancang untuk memudahkan proses peminjaman ruangan di lingkungan kampus. Aplikasi ini dibangun menggunakan bahasa pemrograman PHP dengan framework Laravel, serta didukung oleh database MySQL. Dengan antarmuka yang sederhana dan fungsional, pengguna dapat melihat ketersediaan ruangan, melakukan reservasi dengan cepat, dan mendapatkan konfirmasi secara instan. Fitur-fitur seperti manajemen acara, pembaruan status real-time, dan integrasi data yang solid membuat sistem ini cocok digunakan oleh institusi pendidikan atau organisasi dengan banyak ruang kegiatan.
 ## Preview
-<img src="public/assets/images/p1.jpg" style="max-width:100%">
-<img src="public/assets/images/p2.jpg" style="max-width:100%">
-<img src="public/assets/images/p3.jpg" style="max-width:100%">
-<img src="public/assets/images/p4.jpg" style="max-width:100%">
+<img src="public/img/p1.jpg" style="max-width:100%">
+<img src="public/img/p2.jpg" style="max-width:100%">
+<img src="public/img/p3.jpg" style="max-width:100%">
+<img src="public/img/p4.jpg" style="max-width:100%">
 
 ## Membutuhkan
 - PHP
