@@ -68,4 +68,6 @@ Web Peminjaman ruangan adalah platform berbasis web yang dirancang untuk memudah
    
 11. Login:
     - email: 3337230060@untirta.ac.id password: rama1029 -> User
-    - email: 3337230014@untirta.ac.id password: ismet -> Admin
+    - email: 3337230014@untirta.ac.id password: ismetgalon -> User
+    - email: 3337230004@untirta.ac.id password: fadlykatsunci -> admin
+    - email: 3337230069@untirta.ac.id password: ezrateriosmerah -> User
