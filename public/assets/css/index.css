@@ -18,7 +18,9 @@
 }
 
 /*===== BASE =====*/
-*,
+*, *::before, *::after {
+    box-sizing: border-box;
+}
 
 
 /**
@@ -26,7 +28,7 @@
  * Include this rule to trigger hasLayout and contain floats.
  */
 .cf {
-    *zoom: 1;
+    zoom: 1;
 }
 html {
     scroll-behavior: smooth;

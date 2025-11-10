@@ -52,7 +52,6 @@
 
 <!-- Modal Login -->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-<<<<<<< HEAD
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow-lg">
             <div class="modal-header border-0 bg-gradient" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
@@ -101,31 +100,10 @@
                         </span>
                         <span id="loginSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                     </button>
-=======
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">Login</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="/login" method="POST">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
                 </form>
             </div>
         </div>
     </div>
-<<<<<<< HEAD
 </div>
 
 <style>
@@ -284,6 +262,3 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-=======
-</div>
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7

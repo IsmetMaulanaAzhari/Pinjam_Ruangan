@@ -1,23 +1,15 @@
 <aside class="sidebar">
-<<<<<<< HEAD
     <div class="sidebar-logo">
         <div class="d-flex flex-column align-items-center text-center mb-5">
             <img src="{{ asset('assets/images/LOGO_ORIGINAL.png') }}" style="width: 60px; height: 60px; margin-bottom: 10px;" alt="Logo">
             <div style="font-weight: 700; font-size: 18px; color: #000; line-height: 1.3;">
                 Dashboard<br>Admin
             </div>
-=======
-    <a href="#" class="sidebar-logo">
-        <div class="d-flex justify-content-start align-items-center">
-            <img src="{{ asset('assets/images/LOGO_ORIGINAL.png') }}" style="width: 50px" alt="">
-            <span>dashboard Admin</span>
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
         </div>
 
         <button id="toggle-navbar" onclick="toggleNavbar()">
             <img src="/assets/navbar-times.svg" alt="">
         </button>
-<<<<<<< HEAD
     </div>
 
     @if (auth()->user()->role_id == 1)
@@ -39,123 +31,10 @@
         </a>
 
         <a href="/dashboard/rents" class="sidebar-item {{ Request::is('dashboard/rents') ? 'active' : '' }}">
-=======
-    </a>
-
-    <h5 class="sidebar-title">Menu</h5>
-
-
-    @if (auth()->user()->role_id === 1)
-        {{-- <a href="/dashboard/overview" class="sidebar-item ,mxss9" onclick="toggleActive(this)">
-            <!-- <img src="./assets/img/global/grid.svg" alt=""> -->
-
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21 14H14V21H21V14Z" stroke="white" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M10 14H3V21H10V14Z" stroke="white" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M21 3H14V10H21V3Z" stroke="white" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M10 3H3V10H10V3Z" stroke="white" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-
-            <span>Overview</span>
-        </a> --}}
-
-        <!-- <a href="./employees.html" class="sidebar-item"> -->
-        <!-- <img src="./assets/img/global/users.svg" alt=""> -->
-
-        <a href="/dashboard/admin" class="sidebar-item {{ Request::is('dashboard/admin') ? 'active' : '' }}"
-            onclick="toggleActive(this)">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
-                    stroke="#ABB3C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                    d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
-                    stroke="#ABB3C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                    d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"
-                    stroke="#ABB3C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                    d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z"
-                    stroke="#ABB3C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-
-            <span>Daftar Admin</span>
-        </a>
-
-        <a href="/dashboard/users" class="sidebar-item {{ Request::is('dashboard/users') ? 'active' : '' }}"
-            onclick="toggleActive(this)">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
-                    stroke="#ABB3C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                    d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
-                    stroke="#ABB3C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                    d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"
-                    stroke="#ABB3C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                    d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z"
-                    stroke="#ABB3C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            <span>Daftar Mahasiswa</span>
-        </a>
-
-        <a href="/dashboard/rooms" class="sidebar-item {{ Request::is('dashboard/rooms') ? 'active' : '' }}"
-            onclick="toggleActive(this)">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"
-                    stroke="#ABB3C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M9 22V12H15V22" stroke="#ABB3C4" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-
-            <span>Daftar Ruangan</span>
-        </a>
-
-
-        <a href="/dashboard/temporaryRents"
-            class="sidebar-item {{ Request::is('dashboard/temporaryRents') ? 'active' : '' }}"
-            onclick="toggleActive(this)">
-            <!-- <img src="./assets/img/global/box.svg" alt=""> -->
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M21 16V8C20.9996 7.64927 20.9071 7.30481 20.7315 7.00116C20.556 6.69751 20.3037 6.44536 20 6.27L13 2.27C12.696 2.09446 12.3511 2.00205 12 2.00205C11.6489 2.00205 11.304 2.09446 11 2.27L4 6.27C3.69626 6.44536 3.44398 6.69751 3.26846 7.00116C3.09294 7.30481 3.00036 7.64927 3 8V16C3.00036 16.3507 3.09294 16.6952 3.26846 16.9988C3.44398 17.3025 3.69626 17.5546 4 17.73L11 21.73C11.304 21.9055 11.6489 21.9979 12 21.9979C12.3511 21.9979 12.696 21.9055 13 21.73L20 17.73C20.3037 17.5546 20.556 17.3025 20.7315 16.9988C20.9071 16.6952 20.9996 16.3507 21 16Z"
-                    stroke="#ABB3C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M3.27002 6.96L12 12.01L20.73 6.96" stroke="#ABB3C4" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M12 22.08V12" stroke="#ABB3C4" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-            <span>Daftar Peminjaman <br> Sementara</span>
-        </a>
-
-        <a href="/dashboard/rents" class="sidebar-item {{ Request::is('dashboard/rents') ? 'active' : '' }}"
-            onclick="toggleActive(this)">
-            <!-- <img src="./assets/img/global/box.svg" alt=""> -->
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M21 16V8C20.9996 7.64927 20.9071 7.30481 20.7315 7.00116C20.556 6.69751 20.3037 6.44536 20 6.27L13 2.27C12.696 2.09446 12.3511 2.00205 12 2.00205C11.6489 2.00205 11.304 2.09446 11 2.27L4 6.27C3.69626 6.44536 3.44398 6.69751 3.26846 7.00116C3.09294 7.30481 3.00036 7.64927 3 8V16C3.00036 16.3507 3.09294 16.6952 3.26846 16.9988C3.44398 17.3025 3.69626 17.5546 4 17.73L11 21.73C11.304 21.9055 11.6489 21.9979 12 21.9979C12.3511 21.9979 12.696 21.9055 13 21.73L20 17.73C20.3037 17.5546 20.556 17.3025 20.7315 16.9988C20.9071 16.6952 20.9996 16.3507 21 16Z"
-                    stroke="#ABB3C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M3.27002 6.96L12 12.01L20.73 6.96" stroke="#ABB3C4" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M12 22.08V12" stroke="#ABB3C4" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
             <span>Daftar Peminjaman</span>
         </a>
     @endif
 
-<<<<<<< HEAD
-=======
     <h5 class="sidebar-title">Others</h5>
 
     {{-- <a href="#" class="sidebar-item" onclick="toggleActive(this)">
@@ -209,5 +88,4 @@
     @endauth
 
 
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
 </aside>

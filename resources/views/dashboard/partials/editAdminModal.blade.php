@@ -2,32 +2,6 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-<<<<<<< HEAD
-                <h5 class="modal-title" id="formModalLabel">Form Edit Admin</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" style="text-align: left;">
-                <form method="post" id="editformadmin">
-                    @method('put')
-                    @csrf
-                    <input type="hidden" name="id" id="edit_id">
-                    <div class="mb-3">
-                        <label for="edit_name" class="form-label">Nama Lengkap</label>
-                        <input type="text" class="form-control" id="edit_name"
-                            name="name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit_nomor_induk" class="form-label">Nomor Induk
-                            <span class="text-danger fst-italic fw-lighter" style="font-size: 12px"> *Min 8 Angka</span>
-                        </label>
-                        <input type="number" class="form-control"
-                            id="edit_nomor_induk" name="nomor_induk" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit_email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="edit_email"
-                            name="email" required>
-=======
                 <h5 class="modal-title" id="formModalLabel">Form Edit {{ $title }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -68,7 +42,6 @@
                                 {{ $message }}
                             </div>
                         @enderror
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -79,7 +52,6 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 
 <script>
     $(document).ready(function() {
@@ -101,5 +73,3 @@
         });
     });
 </script>
-=======
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7

@@ -4,11 +4,7 @@
             <button id="toggle-navbar" onclick="toggleNavbar()">
                 <img src="/assets/burger.svg" class="mb-2" alt="">
             </button>
-<<<<<<< HEAD
             <h2 class="nav-title" style="font-size: 28px; font-weight: 600; color: #2d3748;">{{ $title }}</h2>
-=======
-            <h2 class="nav-title">{{ $title }}</h2>
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
         </div>
     </div>
     {{-- @auth
