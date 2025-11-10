@@ -58,18 +58,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('dashboard/rents/{id}/endTransaction', [DashboardRentController::class, 'endTransaction']);
         Route::get('dashboard/users/{id}/makeAdmin', [DashboardUserController::class, 'makeAdmin']);
         Route::get('dashboard/admin/{id}/removeAdmin', [DashboardAdminController::class, 'removeAdmin']);
-<<<<<<< HEAD
-        Route::get('dashboard/admin/{id}/demote', [DashboardAdminController::class, 'demoteAdmin']);
-=======
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
-        Route::get('/dashboard/admin/room/{id}/edit', [DashboardAdminController::class, 'editRoom'])->name('admin.room.edit');
-    Route::put('/dashboard/admin/room/{id}', [DashboardAdminController::class, 'updateRoom'])->name('admin.room.update');
+        Route::put('/dashboard/admin/room/{id}', [DashboardAdminController::class, 'updateRoom'])->name('admin.room.update');
     });
 
-// Routes untuk daftar ruang dan daftar pinjam
-Route::get('/daftarruang', [DaftarRuangController::class, 'index'])->name('daftarruang');
-Route::get('/showruang/{room:code}', [DaftarRuangController::class, 'show'])->name('showruang');
-Route::get('/daftarpinjam', [DaftarPinjamController::class, 'index'])->name('daftarpinjam');
-Route::post('/daftarpinjam', [DaftarPinjamController::class, 'store'])->name('daftarpinjam.store');
-Route::post('/logout', [LoginController::class, 'logout']);
+    // Routes untuk daftar ruang dan daftar pinjam
+    Route::get('/daftarruang', [DaftarRuangController::class, 'index'])->name('daftarruang');
+    Route::get('/showruang/{room:code}', [DaftarRuangController::class, 'show'])->name('showruang');
+    Route::get('/daftarpinjam', [DaftarPinjamController::class, 'index'])->name('daftarpinjam');
+    Route::post('/daftarpinjam', [DaftarPinjamController::class, 'store'])->name('daftarpinjam.store');
+    Route::post('/logout', [LoginController::class, 'logout']);
 });
