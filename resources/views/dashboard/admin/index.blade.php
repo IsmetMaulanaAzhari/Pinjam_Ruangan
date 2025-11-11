@@ -75,7 +75,8 @@
             </div>
         </div>
     </div>
-    @extends('dashboard.partials.addAdminModal')
-    @extends('dashboard.partials.editAdminModal')
+    {{-- include modal partials (was @extends) --}}
+    @include('dashboard.partials.addAdminModal')
+    @include('dashboard.partials.editAdminModal')
     {{-- @extends('dashboard.partials.chooseAdminModal') --}}
 @endsection

@@ -143,5 +143,5 @@
             </div>
         </div>
     </div>
-    @extends('dashboard.partials.rentModal')
+    @include('dashboard.partials.rentModal')
 @endsection

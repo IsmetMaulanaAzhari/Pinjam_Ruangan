@@ -8,8 +8,8 @@
                         <a class="navbar-brand">
                             <img id="logo" src="{{ asset('assets/images/LOGO_ORIGINAL.png') }}" alt="Logo">
                         </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                             <span class="toggler-icon"></span>
                             <span class="toggler-icon"></span>
@@ -27,12 +27,11 @@
                                     <li class="nav-item">
                                         <a href="/daftarpinjam" class="text-warning">Daftar Peminjaman</a>
                                     </li>
-                                    <form action="/logout" method="post">
+                                    <form action="/logout" method="post" class="d-inline">
                                         @csrf
-                                        <button type="submit"
-                                            class="btn border border-warning rounded-pill text-warning "><i
-                                                class="bi bi-box-arrow-right"></i>
-                                            Logout</button>
+                                        <button type="submit" class="btn border border-warning rounded-pill text-warning ">
+                                            <i class="bi bi-box-arrow-right"></i> Logout
+                                        </button>
                                     </form>
                                 @else
                                     <li class="nav-item">

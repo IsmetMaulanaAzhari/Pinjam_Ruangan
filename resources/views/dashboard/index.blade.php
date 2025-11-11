@@ -45,6 +45,6 @@
             </div>
         </div>
     </div>
-    @extends('dashboard.partials.rentModal')
-    @extends('dashboard.partials.addRoomModal')
+    @include('dashboard.partials.rentModal')
+    @include('dashboard.partials.addRoomModal')
 @endsection

@@ -99,7 +99,7 @@
             </div>
         </div>
     </div>
-    @extends('dashboard.partials.rentModal')
-    @extends('dashboard.partials.addRoomModal')
-    @extends('dashboard.partials.editRoomModal')
+    @include('dashboard.partials.rentModal')
+    @include('dashboard.partials.addRoomModal')
+    @include('dashboard.partials.editRoomModal')
 @endsection

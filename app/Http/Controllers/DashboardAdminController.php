@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class DashboardAdminController extends Controller
@@ -16,13 +17,8 @@ class DashboardAdminController extends Controller
     {
         return view('dashboard.admin.index', [
             'title' => "Daftar Admin",
-<<<<<<< HEAD
-            'admins' => User::where('role_id', 1)->orderBy('created_at', 'desc')->get(),
-            'users' => User::where('role_id', 2)->get(),
-=======
             'admins' => User::where('role_id', 1)->get(),
             'users' => User::where('role_id', '<', 2)->get(),
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
         ]);
     }
 
@@ -47,32 +43,17 @@ class DashboardAdminController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:100',
             'nomor_induk' => 'required|min:8|unique:users,nomor_induk',
-<<<<<<< HEAD
-            'email' => 'required|email|unique:users,email',
-=======
             'email' => 'required|email',
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
             'password' => 'required|min:4'
         ]);
 
         $validatedData['role_id'] = 1;
-<<<<<<< HEAD
-        $validatedData['password'] = bcrypt($validatedData['password']);
-
-        try {
-            User::create($validatedData);
-            return redirect('/dashboard/admin')->with('adminSuccess', 'Data admin berhasil ditambahkan');
-        } catch (\Exception $e) {
-            return redirect('/dashboard/admin')->with('deleteAdmin', 'Error: ' . $e->getMessage());
-        }
-=======
 
         $validatedData['password'] = bcrypt($validatedData['password']);
 
         User::create($validatedData);
 
         return redirect('/dashboard/admin')->with('adminSuccess', 'Data admin berhasil ditambahkan');
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
     }
 
     /**
@@ -121,34 +102,17 @@ public function update(Request $request, User $admin)
 {
     $rules = [
         'name' => 'required|max:100',
-<<<<<<< HEAD
-        'nomor_induk' => 'required|min:8',
-        'email' => 'required|email',
-    ];
-
-=======
         'email' => 'required|email',
     ];
 
     // If the provided nomor_induk is different from the original one, add validation rule
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
     if ($request->nomor_induk != $admin->nomor_induk) {
         $rules['nomor_induk'] = 'required|min:8|unique:users,nomor_induk';
     }
 
-<<<<<<< HEAD
-    if ($request->email != $admin->email) {
-        $rules['email'] = 'required|email|unique:users,email';
-    }
-
-    $validatedData = $request->validate($rules);
-    $validatedData['role_id'] = 1;
-
-=======
     $validatedData = $request->validate($rules);
 
     // Update the admin data
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
     $admin->update($validatedData);
 
     return redirect('/dashboard/admin')->with('adminSuccess', 'Data Admin berhasil diubah');
@@ -177,19 +141,4 @@ public function update(Request $request, User $admin)
 
         return redirect('/dashboard/admin');
     }
-<<<<<<< HEAD
-
-    public function demoteAdmin($id)
-    {
-        $user = User::findOrFail($id);
-        
-        // Update role_id dari 1 (admin) menjadi 2 (mahasiswa)
-        $user->update([
-            'role_id' => 2
-        ]);
-
-        return redirect('/dashboard/users')->with('userSuccess', 'Admin berhasil diturunkan menjadi mahasiswa');
-    }
-=======
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
 }

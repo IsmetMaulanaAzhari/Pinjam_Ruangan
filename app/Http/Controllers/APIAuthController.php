@@ -29,7 +29,8 @@ class APIAuthController extends Controller
         $input = $request->all();
         $input['role_id'] = 2;
         $input['password'] = bcrypt($input['password']);
-        $user= User::create($input);
+        /** @var \App\Models\User $user */
+        $user = User::create($input);
 
         $success['token'] = $user->createToken('auth_token')->plainTextToken;
         $success['name'] = $user->name;
@@ -41,9 +42,9 @@ class APIAuthController extends Controller
     }
     public function login(Request $request){
         if(Auth::attempt (['email' => $request->email, 'password'=>$request->password])){
-
+            /** @var \App\Models\User $auth */
             $auth = Auth::user();
-            $success['token'] =$auth->createToken('auth_token')->plainTextToken;
+            $success['token'] = $auth->createToken('auth_token')->plainTextToken; // Sanctum token
             $success['name'] = $auth->name;
             $success['email'] = $auth->email;
             return response()->json([
