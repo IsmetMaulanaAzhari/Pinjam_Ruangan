@@ -17,26 +17,14 @@ class DashboardUserController extends Controller
     {
         return view('dashboard.users.index', [
             'title' => 'Daftar Mahasiswa',
-            'roles' => Role::all(),
-            'users' => User::where('role_id', 2)->paginate(10),
+            'roles' => Role::all() ?? collect(),  // Aman meskipun tabel roles kosong
+            'users' => User::where('role_id', 2)->paginate(10) ?? collect(), // Aman jika users kosong
+            'user' => null, // Tambahan untuk menghindari "Undefined variable $user"
         ]);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -50,7 +38,7 @@ class DashboardUserController extends Controller
         // Otomatis set role_id = 2 (mahasiswa)
         $validatedData['role_id'] = 2;
         $validatedData['password'] = bcrypt($validatedData['password']);
-    
+
         try {
             User::create($validatedData);
             return redirect('/dashboard/users')->with('userSuccess', 'Data mahasiswa berhasil ditambahkan');
@@ -58,35 +46,18 @@ class DashboardUserController extends Controller
             return redirect('/dashboard/users')->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
-    
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
     {
-        return json_encode($user);
+        // Mengembalikan data user dalam format JSON (untuk AJAX edit form)
+        return response()->json($user);
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
     {
@@ -111,26 +82,30 @@ class DashboardUserController extends Controller
 
         return redirect('/dashboard/users')->with('userSuccess', 'Data mahasiswa berhasil diubah');
     }
+
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
     {
-        User::destroy($user->id);
-        return redirect('/dashboard/users')->with('deleteUser', 'Hapus data mahasiswa berhasil');
+        try {
+            User::destroy($user->id);
+            return redirect('/dashboard/users')->with('deleteUser', 'Hapus data mahasiswa berhasil');
+        } catch (\Exception $e) {
+            return redirect('/dashboard/users')->with('error', 'Terjadi kesalahan saat menghapus: ' . $e->getMessage());
+        }
     }
 
+    /**
+     * Ubah role user menjadi admin.
+     */
     public function makeAdmin($id)
     {
-        $userData = [
-            'role_id' => 1,
-        ];
-
-        User::where('id', $id)->update($userData);
-
-        return redirect('/dashboard/admin')->with('adminSuccess', 'Data admin berhasil ditambahkan');
+        try {
+            User::where('id', $id)->update(['role_id' => 1]);
+            return redirect('/dashboard/admin')->with('adminSuccess', 'Data admin berhasil ditambahkan');
+        } catch (\Exception $e) {
+            return redirect('/dashboard/admin')->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
     }
 }

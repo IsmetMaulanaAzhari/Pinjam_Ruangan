@@ -1,82 +1,75 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
-    <div class="col-md-10 p-0">
-        <div class="card-body text-end">
-            @if (session()->has('adminSuccess'))
-                <div class="col-md-16 mx-auto alert alert-success text-center  alert-success alert-dismissible fade show"
-                    style="margin-top: 50px" role="alert">
-                    {{ session('adminSuccess') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-            @if (session()->has('deleteAdmin'))
-                <div class="col-md-16 mx-auto alert alert-success text-center  alert-dismissible fade show"
-                    style="margin-top: 50px" role="alert">
-                    {{ session('deleteAdmin') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
+<div class="col-md-10 p-0">
+    <div class="card-body text-end">
 
-            @if (auth()->user()->role_id === 1)
-                <a href="/dashboard/users" type="button" class="mb-3 btn button btn-primary">
-                    Pilih dari Mahasiswa
-                </a>
-                <button type="button" class="mb-3 btn button btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#addAdmin">
-                    Tambah Admin Baru
-                </button>
-            @endif
+        {{-- Notifikasi --}}
+        @if (session('adminSuccess'))
+            <div class="alert alert-success text-center">{{ session('adminSuccess') }}</div>
+        @endif
+        @if (session('deleteAdmin'))
+            <div class="alert alert-danger text-center">{{ session('deleteAdmin') }}</div>
+        @endif
 
-            <div class="table-responsive">
-                <table class="table table-hover table-stripped table-bordered text-center dt-head-center" id="datatable">
-                    <thead class="table-info">
-                        <tr>
-                            <th scope="row">No.</th>
-                            <th scope="row">Username</th>
-                            <th scope="row">Nomor Induk</th>
-                            <th scope="row">Email</th>
-                            <th scope="row">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if ($admins->count() > 0)
-                            @foreach ($admins as $admin)
-                                <tr>
-                                    <th scope="row">{{ $loop->iteration }} </th>
-                                    <td>{{ $admin->name }} </td>
-                                    <td>{{ $admin->nomor_induk }} </td>
-                                    <td>{{ $admin->email }} </td>
-                                    <td style="font-size: 22px;">
-                                        <a href="/dashboard/users/{{ $admin->id }}/edit" class="editadmin" id="editadmin"
-                                            data-id="{{ $admin->id }}" data-bs-toggle="modal"
-                                            data-bs-target="#editadmin"><i
-                                                class="bi bi-pencil-square text-warning"></i></a>&nbsp;
-                                        <form action="/dashboard/admin/{{ $admin->id }}" method="post" class="d-inline">
-                                            @method('delete')
-                                            @csrf
-                                            <button class="bi bi-trash-fill text-danger border-0"
-                                                onclick="return confirm('Hapus data Admin?')">
-                                            </button>
+        {{-- Tombol tambah --}}
+        @if (auth()->user()->role_id === 1)
+        <div class="d-flex justify-content-end gap-2 mb-3">
+            <a href="/dashboard/users" class="btn btn-primary">Pilih dari Mahasiswa</a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAdmin">
+                Tambah Admin Baru
+            </button>
+        </div>
+        @endif
 
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @else
-                            <tr>
-                                <td colspan="5" class="text-center">
-                                    -- Belum Ada Daftar Admin --
-                                </td>
-                            </tr>
-                        @endif
-                    </tbody>
-                </table>
-            </div>
+        {{-- Tabel daftar admin --}}
+        <div class="table-responsive">
+            <table class="table table-hover table-striped table-bordered text-center align-middle" id="datatable">
+                <thead class="table-info">
+                    <tr>
+                        <th>No.</th>
+                        <th>Username</th>
+                        <th>Nomor Induk</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($admins as $admin)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $admin->name }}</td>
+                        <td>{{ $admin->nomor_induk }}</td>
+                        <td>{{ $admin->email }}</td>
+                        <td>
+                            {{-- Tombol edit --}}
+                            <a href="#" class="text-warning me-2" data-bs-toggle="modal"
+                                data-bs-target="#editAdminModal-{{ $admin->id }}">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                            {{-- Hapus --}}
+                            <form action="{{ route('dashboard.admin.destroy', $admin->id) }}" method="POST" class="d-inline">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" class="border-0 bg-transparent text-danger"
+                                    onclick="return confirm('Yakin ingin menghapus admin ini?')">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    @include('dashboard.partials.editAdminModal', ['admin' => $admin])
+                    @empty
+                    <tr>
+                        <td colspan="5" class="text-muted">-- Belum Ada Daftar Admin --</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
     </div>
-    {{-- include modal partials (was @extends) --}}
-    @include('dashboard.partials.addAdminModal')
-    @include('dashboard.partials.editAdminModal')
-    {{-- @extends('dashboard.partials.chooseAdminModal') --}}
+</div>
+
+{{-- Modal Tambah Admin --}}
+@include('dashboard.partials.addAdminModal')
 @endsection

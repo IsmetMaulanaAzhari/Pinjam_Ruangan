@@ -1,8 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-public function store(Request $request)
+
+use Illuminate\Http\Request;
+use App\Models\Peminjaman;
+
+class RentController extends Controller
 {
+    public function store(Request $request)
+    {
     $request->validate([
         'ruangan_id' => 'required',
         'tanggal_peminjaman' => 'required|date',
@@ -36,4 +42,5 @@ public function store(Request $request)
     ]);
 
     return redirect()->route('rent.index')->with('success', 'Peminjaman berhasil disimpan.');
+    }
 }

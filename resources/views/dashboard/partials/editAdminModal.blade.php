@@ -1,75 +1,55 @@
-<div class="modal fade" id="editadmin" tabindex="-1" aria-labelledby="formModal" aria-hidden="true">
+<div class="modal fade" id="editAdminModal-{{ $admin->id }}" tabindex="-1" aria-labelledby="editAdminLabel-{{ $admin->id }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+
             <div class="modal-header">
-                <h5 class="modal-title" id="formModalLabel">Form Edit {{ $title }}</h5>
+                <h5 class="modal-title fw-semibold" id="editAdminLabel-{{ $admin->id }}">Form Edit Admin</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" style="text-align: left;">
-                <form action="{{ route('admin.update', ['admin' => $admin->id]) }}" method="post" id="editformadmin">
-                    @method('put')
+
+            <div class="modal-body text-start">
+                <form action="{{ route('dashboard.admin.update', $admin->id) }}" method="POST">
+                    @method('PUT')
                     @csrf
-                    <input type="hidden" name="id" id="id" value="{{ $admin->id }}">
+
                     <div class="mb-3">
-                        <label for="name" class="form-label">Nama Lengkap</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                            name="name" value="{{ old('name', $admin->name) }}" required>
-                        @error('name')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="nomor_induk" class="form-label">Nomor Induk
-                            <span class="text-danger fst-italic fw-lighter" style="font-size: 12px"> *Min 8 Angka</span>
-                        </label>
-                        <input type="number" class="form-control @error('nomor_induk') is-invalid @enderror"
-                            id="nomor_induk" name="nomor_induk" value="{{ old('nomor_induk', $admin->nomor_induk) }}"
+                        <label for="name-{{ $admin->id }}" class="form-label">Nama Lengkap</label>
+                        <input type="text"
+                            class="form-control"
+                            id="name-{{ $admin->id }}"
+                            name="name"
+                            value="{{ old('name', $admin->name) }}"
                             required>
-                        @error('nomor_induk')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
                     </div>
+
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
-                            name="email" value="{{ old('email', $admin->email) }}" required>
-                        @error('email')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        <label for="nomor_induk-{{ $admin->id }}" class="form-label">Nomor Induk</label>
+                        <input type="number"
+                            class="form-control"
+                            id="nomor_induk-{{ $admin->id }}"
+                            name="nomor_induk"
+                            value="{{ old('nomor_induk', $admin->nomor_induk) }}"
+                            required>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+
+                    <div class="mb-3">
+                        <label for="email-{{ $admin->id }}" class="form-label">Email</label>
+                        <input type="email"
+                            class="form-control"
+                            id="email-{{ $admin->id }}"
+                            name="email"
+                            value="{{ old('email', $admin->email) }}"
+                            required>
+                    </div>
+
+                    <div class="modal-footer border-0 pt-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save me-1"></i> Simpan Perubahan
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function() {
-        $('.editadmin').on('click', function() {
-            const id = $(this).data('id');
-            
-            $.ajax({
-                url: '/dashboard/admin/' + id + '/edit',
-                method: 'GET',
-                success: function(response) {
-                    const admin = JSON.parse(response);
-                    $('#edit_id').val(admin.id);
-                    $('#edit_name').val(admin.name);
-                    $('#edit_nomor_induk').val(admin.nomor_induk);
-                    $('#edit_email').val(admin.email);
-                    $('#editformadmin').attr('action', '/dashboard/admin/' + admin.id);
-                }
-            });
-        });
-    });
-</script>

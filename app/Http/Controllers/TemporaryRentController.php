@@ -24,11 +24,7 @@ class TemporaryRentController extends Controller
 
         $rent = Rent::where('id', $id)->update($rentStatus);
 
-<<<<<<< HEAD
         return redirect('/dashboard/temporaryRents')->with('acceptSuccess', 'Peminjaman berhasil disetujui');
-=======
-        return redirect('/dashboard/temporaryRents');
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
     }
 
     public function declineRents($id)
@@ -39,10 +35,6 @@ class TemporaryRentController extends Controller
 
         Rent::where('id', $id)->update($rentStatus);
 
-<<<<<<< HEAD
         return redirect('/dashboard/temporaryRents')->with('declineSuccess', 'Peminjaman berhasil ditolak');
-=======
-        return redirect('/dashboard/temporaryRents');
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
     }
 }
