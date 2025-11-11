@@ -45,10 +45,19 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard/temporaryRents/{id}/declineRents', [TemporaryRentController::class, 'declineRents']);
 
         // Dashboard Resources
-        Route::resource('/dashboard/rents', DashboardRentController::class);
-        Route::resource('/dashboard/rooms', DashboardRoomController::class);
-        Route::resource('/dashboard/users', DashboardUserController::class);
-        Route::resource('/dashboard/admin', DashboardAdminController::class)
+        Route::resource('/dashboard/rents', DashboardRentController::class)
+            ->names('dashboard.rents');
+
+        Route::resource('/dashboard/rooms', DashboardRoomController::class, [
+            'parameters' => ['room' => 'code']
+        ])
+            ->names('dashboard.rooms')
+            ->except(['create', 'edit']);
+
+        Route::resource('/dashboard/users', DashboardUserController::class)
+            ->names('dashboard.users');
+
+       Route::resource('/dashboard/admin', DashboardAdminController::class)
             ->names([
                 'index' => 'dashboard.admin.index',
                 'create' => 'dashboard.admin.create',
@@ -57,7 +66,7 @@ Route::middleware(['auth'])->group(function () {
                 'update' => 'dashboard.admin.update',
                 'destroy' => 'dashboard.admin.destroy',
             ]);
-
+            
         // Custom Admin Routes
         Route::get('/dashboard/rents/{id}/endTransaction', [DashboardRentController::class, 'endTransaction']);
         Route::get('/dashboard/users/{id}/makeAdmin', [DashboardUserController::class, 'makeAdmin']);

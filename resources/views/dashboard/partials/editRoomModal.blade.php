@@ -1,98 +1,115 @@
 <div class="modal fade" id="editRoom" tabindex="-1" aria-labelledby="formModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="formModalLabel">Form Edit {{ $title }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" style="text-align: left;">
-                <form action="/dashboard/rooms/{{ $room->code }}" method="post" enctype="multipart/form-data"
-                    id="editform">
-                    @method('put')
-                    @csrf
-                    <input type="hidden" name="id" id="id">
-                    <div class="mb-3">
-                        <label for="code" class="form-label">Kode Ruangan</label>
-                        <input type="text" class="form-control  @error('code') is-invalid @enderror" id="code"
-                            name="code" required value="{{ old('code', $room->code) }}">
-                        @error('code')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nama Ruangan</label>
-                        <input type="text" class="form-control" id="name" name="name" required
-                            value="{{ old('name', $room->name) }}">
-                    </div>
-                    <div class='mb-3'>
-                        <label for='img' class='form-label'>Foto Ruangan <span
-                                class="text-danger fst-italic fw-lighter" style="font-size: 12px">
-                                *Max 2 Mb</span></label>
-                        <input class="form-control @error('img') is-invalid @enderror" type='file' id='img'
-                            name='img' />
-                        @error('img')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="mb-3 row">
-                        <div class="col-6">
-                            <label for="floor" class="form-label">Lantai</label>
-                            <input type="number" class="form-control" id="floor" name="floor" required
-                                value="{{ old('floor', $room->floor) }}">
-                        </div>
-                        <div class="col-6">
-                            <label for="capacity" class="form-label">Kapasitas</label>
-                            <input type="number" class="form-control" id="capacity" name="capacity" required
-                                value="{{ old('capacity', $room->capacity) }}">
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="building_id" class="form-label d-block">Gedung</label>
-                        <select class="form-select" aria-label="Default select example" name="building_id"
-                            id="building_id" required>
-                            <option selected disabled>Pilih Gedung</option>
-                            @foreach ($buildings as $building)
-                                @if (old('building_id') == $building->id)
-                                    <option value="{{ $building->id }}" selected>{{ $building->name }}</option>
-                                @else
-                                    <option value="{{ $building->id }}">{{ $building->name }}</option>
-                                @endif
-                            @endforeach
-
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="type" class="form-label">Tipe Ruangan</label>
-                        <select class="form-select" name="type" id="type" required>
-                            <option disabled>Pilih Tipe Ruangan</option>
-                            <option value="Laboratorium" {{ old('type') === 'Laboratorium' ? 'selected' : '' }}>
-                                Laboratorium</option>
-                            <option value="Ruang Kelas" {{ old('type') === 'Ruang Kelas' ? 'selected' : '' }}>Ruang
-                                Kelas</option>
-                            <option value="Ruang Dosen" {{ old('type') === 'Ruang Dosen' ? 'selected' : '' }}>Ruang
-                                Dosen</option>
-                            <option value="Ruang Umum" {{ old('type') === 'Ruang Umum' ? 'selected' : '' }}>Ruang Umum
-                            </option>
-                            <option value="Auditorium" {{ old('type') === 'Auditorium' ? 'selected' : '' }}>Auditorium
-                            </option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Deskripsi Ruangan</label>
-                        <textarea name="description" id="description" cols="30" rows="5" class="form-control "
-                            value="{{ old('description', $room->description) }}" required></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" id="editbtn" name="editbtn">Simpan</button>
-                    </div>
-                </form>
-            </div>
-
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="editRoomForm" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT') <!-- Laravel mengenali PUT request -->
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Ruangan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
+
+        <div class="modal-body">
+          <input type="hidden" id="edit_id" name="id">
+          <div class="mb-3">
+            <label class="form-label">Kode Ruangan</label>
+            <input type="text" id="edit_code" name="code" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Nama Ruangan</label>
+            <input type="text" id="edit_name" name="name" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Foto Ruangan</label>
+            <input type="file" id="edit_img" name="img" class="form-control">
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label">Lantai</label>
+              <input type="number" id="edit_floor" name="floor" class="form-control" required>
+            </div>
+            <div class="col">
+              <label class="form-label">Kapasitas</label>
+              <input type="number" id="edit_capacity" name="capacity" class="form-control" required>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Gedung</label>
+            <select id="edit_building_id" name="building_id" class="form-select" required>
+              <option disabled selected>Pilih Gedung</option>
+              @foreach ($buildings as $building)
+              <option value="{{ $building->id }}">{{ $building->name }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Tipe Ruangan</label>
+            <select id="edit_type" name="type" class="form-select" required>
+              <option value="Laboratorium">Laboratorium</option>
+              <option value="Ruang Kelas">Ruang Kelas</option>
+              <option value="Ruang Dosen">Ruang Dosen</option>
+              <option value="Ruang Umum">Ruang Umum</option>
+              <option value="Auditorium">Auditorium</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Deskripsi</label>
+            <textarea id="edit_description" name="description" class="form-control" rows="4" required></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const editButtons = document.querySelectorAll('.editroom');
+    const form = document.getElementById('editRoomForm');
+
+    editButtons.forEach(button => {
+        button.addEventListener('click', async function() {
+            const code = this.dataset.code;
+
+            try {
+                const response = await fetch(`/dashboard/rooms/${code}`, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+
+                // Set form action directly
+                form.action = `/dashboard/rooms/${data.code}`;
+
+                form.querySelector('#edit_id').value = data.id;
+                form.querySelector('#edit_code').value = data.code;
+                form.querySelector('#edit_name').value = data.name;
+                form.querySelector('#edit_floor').value = data.floor;
+                form.querySelector('#edit_capacity').value = data.capacity;
+                form.querySelector('#edit_building_id').value = data.building_id;
+                form.querySelector('#edit_type').value = data.type;
+                form.querySelector('#edit_description').value = data.description;
+
+                console.log('Room data loaded:', data);
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Gagal memuat data ruangan: ' + error.message);
+            }
+        });
+    });
+});
+</script>
+
