@@ -38,6 +38,22 @@
                                     aria-label="Close"></button>
                             </div>
                         @endif
+                        @if (session()->has('success'))
+                            <div class="col-md-16 mx-auto alert alert-success text-center  alert-success alert-dismissible fade show"
+                                style="margin-top: 50px" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
+                        @if (session()->has('error'))
+                            <div class="col-md-16 mx-auto alert alert-danger text-center alert-dismissible fade show"
+                                style="margin-top: 50px" role="alert">
+                                {{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
                         <div class="table-responsive justify-content-center">
                             <div class="d-flex justify-content-end">
                                 {{ $userRents->links() }}
@@ -52,9 +68,10 @@
                                         <th scope="row">Mulai Pinjam</th>
                                         <th scope="row">Selesai Pinjam</th>
                                         <th scope="row">Tujuan</th>
-                                        <th scope="row">Waktu Transaksi</th>
-                                        <th scope="row">Kembalikan</th>
+                                        <th scope="row">Waktu Permintaan</th>
+                                        <th scope="row">Waktu Direspon</th>
                                         <th scope="row">Status Pinjam</th>
+                                        <th scope="row">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -73,22 +90,45 @@
                                                 <td>{{ $rent->time_end_use }}</td>
                                                 <td>{{ $rent->purpose }}</td>
                                                 <td>{{ $rent->transaction_start }}</td>
-                                                @if ($rent->status == 'dipinjam')
-                                                    <td>-</td>
-                                                @else
+                                                <td>
                                                     @if (!is_null($rent->transaction_end))
-                                                        <td>{{ $rent->transaction_end }}</td>
+                                                        {{ $rent->transaction_end }}
                                                     @else
-                                                        <td>-</td>
+                                                        <span class="text-muted">-</span>
                                                     @endif
-                                                @endif
+                                                </td>
 
-                                                <td>{{ $rent->status }}</td>
+                                                <td>
+                                                    @if($rent->status == 'pending')
+                                                        <span class="badge bg-warning text-dark">{{ $rent->status }}</span>
+                                                    @elseif($rent->status == 'dipinjam')
+                                                        <span class="badge bg-primary">{{ $rent->status }}</span>
+                                                    @elseif($rent->status == 'ditolak')
+                                                        <span class="badge bg-danger">{{ $rent->status }}</span>
+                                                    @else
+                                                        <span class="badge bg-secondary">{{ $rent->status }}</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if($rent->status == 'pending')
+                                                        <form action="/dashboard/rents/{{ $rent->id }}/cancel" method="POST" class="d-inline">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-sm btn-danger" 
+                                                                onclick="return confirm('Tarik permintaan peminjaman ini?')" 
+                                                                title="Tarik Permintaan">
+                                                                <i class="bi bi-x-circle"></i> Tarik
+                                                            </button>
+                                                        </form>
+                                                    @else
+                                                        <span class="text-muted">-</span>
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="9" class="text-center">
+                                            <td colspan="10" class="text-center">
                                                 -- Belum Ada Peminjaman --
                                             </td>
                                         </tr>

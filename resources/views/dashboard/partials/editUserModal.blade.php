@@ -1,82 +1,3 @@
-<<<<<<< HEAD
-<div class="modal fade" id="edituser" tabindex="-1" aria-labelledby="formModal" aria-hidden="true">
-=======
-<!-- <div class="modal fade" id="edituser" tabindex="-1" aria-labelledby="formModal" aria-hidden="true">
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="formModalLabel">Form Edit {{ $title }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" style="text-align: left;">
-                <form action="" method="post" id="editformuser">
-                    @method('put')
-                    @csrf
-<<<<<<< HEAD
-=======
-                    <input type="hidden" name="_method" value="PUT">
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
-                    <input type="hidden" name="id" id="id">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nama Lengkap</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                            name="name" value="{{ old('name') }}" required>
-                        @error('name')
-<<<<<<< HEAD
-=======
-    <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-@enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="nomor_induk" class="form-label">Nomor Induk</label>
-                        <input type="number" class="form-control @error('nomor_induk') is-invalid @enderror"
-                            id="nomor_induk" name="nomor_induk" value="{{ old('nomor_induk') }}" required>
-                        @error('nomor_induk')
-    <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-@enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
-                            name="email" value="{{ old('email') }}" required>
-                        @error('email')
-    <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-@enderror
-                    </div>
-                    @if (Request::is('dashboard/admin'))
-<input type="hidden" name="role_id" id="role_id" value="{{ 2 }}">
-@else
-<div class="mb-3">
-                            <label for="role_id" class="form-label d-block">User Role</label>
-                            <select class="form-select" aria-label="Default select example" name="role_id"
-                                id="role_id" value="{{ old('role_id') }}" required>
-
-                                <option selected disabled>Pilih Role</option>
-                                @foreach ($roles as $role)
-<option value="{{ $role->id }}">{{ $role->name }}</option>
-@endforeach
-                            </select>
-                        </div>
-@endif
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
-</div> -->
-
-
 <div class="modal fade" id="edituser" tabindex="-1" aria-labelledby="formModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -85,73 +6,32 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" style="text-align: left;">
-                <form action="{{ route('users.update', ['user' => $user->id]) }}" method="post" id="editformuser">
-                    @method('put')
+                <form method="POST" id="editformuser">
+                    @method('PUT')
                     @csrf
-                    <input type="hidden" name="id" id="id">
+                    <input type="hidden" name="id" id="edit_user_id">
                     <div class="mb-3">
-                        <label for="name" class="form-label">Nama Lengkap</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                            name="name" value="{{ old('name', $user->name) }}" required>
-                        @error('name')
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        <label for="edit_user_name" class="form-label">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="edit_user_name"
+                            name="name" required>
                     </div>
                     <div class="mb-3">
-<<<<<<< HEAD
-                        <label for="nomor_induk" class="form-label">Nomor Induk</label>
-                        <input type="number" class="form-control @error('nomor_induk') is-invalid @enderror"
-                            id="nomor_induk" name="nomor_induk" value="{{ old('nomor_induk') }}" required>
-=======
-                        <label for="nomor_induk" class="form-label">Nomor Induk
-                            <span class="text-danger fst-italic fw-lighter" style="font-size: 12px"> *Min 8
-                                Angka</span></label>
-                        <input type="number" class="form-control @error('nomor_induk') is-invalid @enderror"
-                            id="nomor_induk" name="nomor_induk" name="nomor_induk"
-                            value="{{ old('nomor_induk', $user->nomor_induk) }}" required>
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
-                        @error('nomor_induk')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        <label for="edit_user_nomor_induk" class="form-label">Nomor Induk
+                            <span class="text-danger fst-italic fw-lighter" style="font-size: 12px"> *Min 8 Angka</span>
+                        </label>
+                        <input type="number" class="form-control"
+                            id="edit_user_nomor_induk" name="nomor_induk" required>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-<<<<<<< HEAD
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
-                            name="email" value="{{ old('email') }}" required>
-=======
-                        <input type="email" class="form-control @error('email') is-invalid @enderror"
-                            id="email" name="email" value="{{ old('email', $user->email) }}" required>
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
-                        @error('email')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        <label for="edit_user_email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="edit_user_email"
+                            name="email" required>
                     </div>
-<<<<<<< HEAD
-                    <input type="hidden" name="role_id" id="role_id" value="2">
-=======
-                    @if (Request::is('dashboard/admin'))
-                        <input type="hidden" name="role_id" id="role_id" value="{{ 2 }}">
-                    @else
-                        <div class="mb-3">
-                            <label for="role_id" class="form-label d-block">User Role</label>
-                            <select class="form-select" aria-label="Default select example" name="role_id"
-                                id="role_id" value="{{ old('role_id') }}" required>
-                                <option selected disabled>Pilih Role</option>
-                                @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    @endif
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
+                    <input type="hidden" name="role_id" id="edit_user_role_id" value="2">
+                    <div class="mb-3">
+                        <label for="edit_user_password" class="form-label">Password (kosongkan jika tidak diubah)</label>
+                        <input type="password" class="form-control" id="edit_user_password" name="password" placeholder="Biarkan kosong jika tidak ingin mengganti password">
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>
@@ -161,30 +41,44 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 
 <script>
-    $(document).ready(function() {
-        $('.edituser').on('click', function() {
-            const id = $(this).data('id');
-            $.ajax({
-                url: '/dashboard/users/' + id + '/edit',
-                type: 'GET',
-                success: function(response) {
+    function setFormActionUser(id) {
+        // Set form action dengan ID yang benar
+        const actionUrl = '/dashboard/users/' + id;
+        document.getElementById('editformuser').action = actionUrl;
+        
+        // Load user data
+        $.ajax({
+            url: '/dashboard/users/' + id + '/edit',
+            method: 'GET',
+            success: function(response) {
+                try {
                     const user = JSON.parse(response);
-                    $('#id').val(user.id);
-                    $('#name').val(user.name);
-                    $('#nomor_induk').val(user.nomor_induk);
-                    $('#email').val(user.email);
-                    $('#role_id').val(2);
-                    $('#editformuser').attr('action', '/dashboard/users/' + user.id);
-                },
-                error: function(xhr) {
-                    alert('Error loading data');
+                    $('#edit_user_id').val(user.id);
+                    $('#edit_user_name').val(user.name);
+                    $('#edit_user_nomor_induk').val(user.nomor_induk);
+                    $('#edit_user_email').val(user.email);
+                    $('#edit_user_role_id').val(2);
+                    $('#edit_user_password').val('');
+                } catch (e) {
+                    console.error('Failed parsing user response', e, response);
                 }
-            });
+            },
+            error: function(xhr) {
+                console.error('Failed to load user data', xhr);
+            }
+        });
+    }
+    
+    $(document).ready(function() {
+        // Safety: block submit if action not set
+        $('#editformuser').on('submit', function(e) {
+            const action = $(this).attr('action') || '';
+            if (!action || action.trim() === '') {
+                e.preventDefault();
+                alert('Terjadi kesalahan: URL tujuan tidak tersedia. Silakan tutup modal lalu buka kembali.');
+            }
         });
     });
 </script>
-=======
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7

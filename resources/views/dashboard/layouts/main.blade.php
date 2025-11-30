@@ -9,13 +9,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
-<<<<<<< HEAD
     <title>{{ $title }} | Universitas Sultan Ageng Tirtayasa</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/LOGO_ORIGINAL.png') }}">
-=======
-    <title>{{ $title }} | Universitas Teknokrat Indonesia</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/UNIVERSITAS TEKNOKRAT.png') }}">
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
 </head>
 
 <body>
@@ -23,41 +18,26 @@
     <div class="screen-cover d-none d-xl-none"></div>
 
     <div class="row">
-<<<<<<< HEAD
         <div class="col-navbar d-none d-xl-block" style="position: fixed; width: 240px; height: 100vh; padding: 0; left: 0; top: 0; z-index: 1000;">
-=======
-        <div class="col-12 col-lg-3 col-navbar d-none d-xl-block">
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
 
             @include('dashboard.partials.sidebar')
 
         </div>
 
 
-<<<<<<< HEAD
         <div class="col-12" style="padding: 0;">
             <div class="main-content-wrapper">
                 @include('dashboard.partials.navbar')
 
                 @yield('container')
             </div>
-=======
-        <div class="col-12 col-xl-9">
-            @include('dashboard.partials.navbar')
-
-            @yield('container')
-
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
         </div>
     </div>
 
 
 
 
-<<<<<<< HEAD
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-=======
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>

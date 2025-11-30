@@ -29,6 +29,9 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->configureRateLimiting();
 
+        // Bind 'admin' parameter ke User model
+        Route::model('admin', \App\Models\User::class);
+
         $this->routes(function () {
             Route::middleware('api')
                 ->prefix('api')

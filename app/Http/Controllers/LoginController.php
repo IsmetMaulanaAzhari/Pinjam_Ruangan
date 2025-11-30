@@ -21,7 +21,6 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
     
-<<<<<<< HEAD
         // Check if user exists
         $user = \App\Models\User::where('email', $credentials['email'])->first();
         
@@ -35,14 +34,12 @@ class LoginController extends Controller
             return back()->withErrors(['email' => 'Akun tidak ditemukan.'])->withInput();
         }
     
-=======
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
     
             $user = Auth::user();
-<<<<<<< HEAD
-            $redirectUrl = $user->role_id === 1 ? '/dashboard/admin' : '/';
+            // Redirect admin ke dashboard/admin, user biasa ke homepage
+            $redirectUrl = $user->role_id == 1 ? '/dashboard/admin' : '/';
             
             if ($request->ajax()) {
                 return response()->json([
@@ -63,16 +60,6 @@ class LoginController extends Controller
         }
         
         return back()->withErrors(['password' => 'Password salah.'])->withInput();
-=======
-            if ($user->role_id === 1) { 
-                return redirect()->intended('/dashboard/admin');
-            } elseif ($user->role_id === 2) { 
-                return redirect()->intended('/');
-            }
-        }
-    
-        return back()->with('loginError', 'Masukkan Email & Password Dengan Benar');
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
     }
     
 

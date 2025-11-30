@@ -3,10 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-<<<<<<< HEAD
     <meta name="csrf-token" content="{{ csrf_token() }}">
-=======
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
 
     <title> {{ $title }} - Universitas Sultan Ageng Tirtayasa </title>
 
@@ -15,10 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/LOGO_ORIGINAL.png') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-<<<<<<< HEAD
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-=======
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/LineIcons.2.0.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-5.0.5-alpha.min.css') }}">

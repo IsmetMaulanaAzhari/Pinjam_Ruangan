@@ -39,31 +39,27 @@ Route::post('/register', [RegisterController::class, 'register']);
 // Routes yang membutuhkan autentikasi
 Route::middleware(['auth'])->group(function () {
 
-    // Dashboard Overview
-    Route::get('/dashboard/overview', function () {
-        return view('/dashboard/overview/index', [
-            'title' => "Dashboard Admin",
-        ]);
-    });
-
-    // Routes dengan middleware tambahan (checkRole)
+    // Routes dengan middleware checkRole (hanya admin)
     Route::middleware(['checkRole'])->group(function () {
+        // Dashboard Overview
+        Route::get('/dashboard/overview', function () {
+            return view('/dashboard/overview/index', [
+                'title' => "Dashboard Admin",
+            ]);
+        });
         Route::get('/dashboard/temporaryRents', [TemporaryRentController::class, 'index']);
         Route::get('/dashboard/temporaryRents/{id}/acceptRents', [TemporaryRentController::class, 'acceptRents']);
         Route::get('/dashboard/temporaryRents/{id}/declineRents', [TemporaryRentController::class, 'declineRents']);
         Route::resource('dashboard/rents', DashboardRentController::class);
         Route::resource('dashboard/rooms', DashboardRoomController::class);
         Route::resource('dashboard/users', DashboardUserController::class);
-        Route::resource('dashboard/admin', DashboardAdminController::class);
+        Route::resource('dashboard/admin', DashboardAdminController::class)->parameters(['admin' => 'admin']);
         Route::get('dashboard/rents/{id}/endTransaction', [DashboardRentController::class, 'endTransaction']);
         Route::get('dashboard/users/{id}/makeAdmin', [DashboardUserController::class, 'makeAdmin']);
         Route::get('dashboard/admin/{id}/removeAdmin', [DashboardAdminController::class, 'removeAdmin']);
-<<<<<<< HEAD
         Route::get('dashboard/admin/{id}/demote', [DashboardAdminController::class, 'demoteAdmin']);
-=======
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
         Route::get('/dashboard/admin/room/{id}/edit', [DashboardAdminController::class, 'editRoom'])->name('admin.room.edit');
-    Route::put('/dashboard/admin/room/{id}', [DashboardAdminController::class, 'updateRoom'])->name('admin.room.update');
+        Route::put('/dashboard/admin/room/{id}', [DashboardAdminController::class, 'updateRoom'])->name('admin.room.update');
     });
 
 // Routes untuk daftar ruang dan daftar pinjam
@@ -71,5 +67,6 @@ Route::get('/daftarruang', [DaftarRuangController::class, 'index'])->name('dafta
 Route::get('/showruang/{room:code}', [DaftarRuangController::class, 'show'])->name('showruang');
 Route::get('/daftarpinjam', [DaftarPinjamController::class, 'index'])->name('daftarpinjam');
 Route::post('/daftarpinjam', [DaftarPinjamController::class, 'store'])->name('daftarpinjam.store');
+Route::delete('/dashboard/rents/{id}/cancel', [DaftarPinjamController::class, 'cancelRent'])->name('rent.cancel');
 Route::post('/logout', [LoginController::class, 'logout']);
 });

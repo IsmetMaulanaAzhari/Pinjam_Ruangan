@@ -106,13 +106,7 @@ class DashboardRoomController extends Controller
      */
     public function edit(Room $room)
     {
-        $buildings = Building::all();
-
-        return view('dashboard.rooms.edit', [
-            'title' => 'Edit Ruangan: ' . $room->name,
-            'room' => $room,
-            'buildings' => $buildings,
-        ]);
+        return json_encode($room);
     }
 
     /**
@@ -127,7 +121,7 @@ class DashboardRoomController extends Controller
         try {
             $rules = [
                 'name' => 'required',
-                'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'floor' => 'required',
                 'capacity' => 'required',
                 'building_id' => 'required',
@@ -141,15 +135,19 @@ class DashboardRoomController extends Controller
     
             $validatedData = $request->validate($rules);
     
-            if ($request->file('img')) {
+            // Hanya update gambar jika ada file baru yang diupload
+            if ($request->hasFile('img')) {
                 // Hapus gambar lama jika ada
-                if ($room->img && Storage::exists($room->img)) {
-                    Storage::delete($room->img);
+                if ($room->img && Storage::exists('public/' . $room->img)) {
+                    Storage::delete('public/' . $room->img);
                 }
     
                 // Unggah gambar baru
-                $imgPath = $request->file('img')->storeAs('public/assets/images/ruang/', $validatedData['code'] . '.' . $request->file('img')->extension());
+                $imgPath = $request->file('img')->storeAs('public/assets/images/ruang/', $request->code . '.' . $request->file('img')->extension());
                 $validatedData['img'] = 'assets/images/ruang/' . basename($imgPath);
+            } else {
+                // Jika tidak ada gambar baru, hapus dari validatedData agar tidak mengoverwrite gambar lama
+                unset($validatedData['img']);
             }
     
             $validatedData['status'] = false;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Rent;
 use App\Models\Room;
+use Illuminate\Support\Facades\Storage;
 
 class TemporaryRentController extends Controller
 {
@@ -18,31 +19,21 @@ class TemporaryRentController extends Controller
 
     public function acceptRents($id)
     {
-        $rentStatus = [
+        Rent::where('id', $id)->update([
             'status' => 'dipinjam',
-        ];
+            'transaction_end' => now(),
+        ]);
 
-        $rent = Rent::where('id', $id)->update($rentStatus);
-
-<<<<<<< HEAD
         return redirect('/dashboard/temporaryRents')->with('acceptSuccess', 'Peminjaman berhasil disetujui');
-=======
-        return redirect('/dashboard/temporaryRents');
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
     }
 
     public function declineRents($id)
     {
-        $rentStatus = [
+        Rent::where('id', $id)->update([
             'status' => 'ditolak',
-        ];
+            'transaction_end' => now(),
+        ]);
 
-        Rent::where('id', $id)->update($rentStatus);
-
-<<<<<<< HEAD
         return redirect('/dashboard/temporaryRents')->with('declineSuccess', 'Peminjaman berhasil ditolak');
-=======
-        return redirect('/dashboard/temporaryRents');
->>>>>>> 18f67a814eafdb41af007f183bfe0f5d74aa8ac7
     }
 }
