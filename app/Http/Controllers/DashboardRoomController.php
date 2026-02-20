@@ -108,6 +108,13 @@ class DashboardRoomController extends Controller
     {
         $buildings = Building::all();
 
+        if (request()->ajax()) {
+            return response()->json([
+                'room' => $room,
+                'buildings' => $buildings
+            ]);
+        }
+
         return view('dashboard.rooms.edit', [
             'title' => 'Edit Ruangan: ' . $room->name,
             'room' => $room,
@@ -143,8 +150,8 @@ class DashboardRoomController extends Controller
     
             if ($request->file('img')) {
                 // Hapus gambar lama jika ada
-                if ($room->img && Storage::exists($room->img)) {
-                    Storage::delete($room->img);
+                if ($room->img && Storage::exists('public/' . $room->img)) {
+                    Storage::delete('public/' . $room->img);
                 }
     
                 // Unggah gambar baru
@@ -155,9 +162,31 @@ class DashboardRoomController extends Controller
             $validatedData['status'] = false;
     
             $room->update($validatedData);
+
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Data ruangan berhasil diubah',
+                    'room' => $room->fresh()
+                ]);
+            }
     
             return redirect('/dashboard/rooms')->with('roomSuccess', 'Data ruangan berhasil diubah');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'errors' => $e->errors()
+                ], 422);
+            }
+            throw $e;
         } catch (\Exception $e) {
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+                ], 500);
+            }
             return redirect('/dashboard/rooms')->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }

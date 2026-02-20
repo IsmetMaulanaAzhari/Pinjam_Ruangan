@@ -1,71 +1,216 @@
-<!-- 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
--->
+<p align="center">
+  <img src="public/img/UNIVERSITAS TEKNOKRAT.png" width="120" alt="Logo Universitas">
+</p>
 
-# Peminjaman Ruangan
-Web Peminjaman ruangan adalah platform berbasis web yang dirancang untuk memudahkan proses peminjaman ruangan di lingkungan kampus. Aplikasi ini dibangun menggunakan bahasa pemrograman PHP dengan framework Laravel, serta didukung oleh database MySQL. Dengan antarmuka yang sederhana dan fungsional, pengguna dapat melihat ketersediaan ruangan, melakukan reservasi dengan cepat, dan mendapatkan konfirmasi secara instan. Fitur-fitur seperti manajemen acara, pembaruan status real-time, dan integrasi data yang solid membuat sistem ini cocok digunakan oleh institusi pendidikan atau organisasi dengan banyak ruang kegiatan.
-## Preview
-<img src="public/img/p1.jpg" style="max-width:100%">
-<img src="public/img/p2.jpg" style="max-width:100%">
-<img src="public/img/p3.jpg" style="max-width:100%">
-<img src="public/img/p4.jpg" style="max-width:100%">
+<h1 align="center">🏢 Sistem Peminjaman Ruangan</h1>
 
-## Membutuhkan
-- PHP
-- Composer
-- Laravel
-- MySql
+<p align="center">
+  <b>Platform berbasis web untuk memudahkan proses peminjaman ruangan di lingkungan kampus</b>
+</p>
 
-## Fitur yang ada
--  Admin
--  Authentication
--  Login (Admin/User)
--  Reserve Room
--  etc
+<p align="center">
+  <img src="https://img.shields.io/badge/PHP-8.0+-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP">
+  <img src="https://img.shields.io/badge/Laravel-9.x-FF2D20?style=flat-square&logo=laravel&logoColor=white" alt="Laravel">
+  <img src="https://img.shields.io/badge/MySQL-5.7+-4479A1?style=flat-square&logo=mysql&logoColor=white" alt="MySQL">
+  <img src="https://img.shields.io/badge/Bootstrap-5.x-7952B3?style=flat-square&logo=bootstrap&logoColor=white" alt="Bootstrap">
+</p>
 
-## instalasi
-1. Download atau clone project ini.
-   ```git
-   https://github.com/IsmetMaulanaAzhari/Pinjam_Ruangan
-   ```
-2. Pindah ke dalam folder `Pinjam-Ruang`.
-   ```sh
-   cd Pinjam_Ruangan
-   ```
-3. Install komponen yang diperlukan menggunakan composer.
-   ```sh
-   composer install
-   ```
-4. Jika composer install tidak bisa jalan, maka kamu harus mengupdate composer terlebih dahulu.
-   ```sh
-   composer update
-   ```
-4. Ubah file `.env.example` menjadi `.env`(kamu juga bisa merubah nama database sesuai keinginan kamu).
-   ```sh
-   cp .env.example .env
-   ```
-5. Jika mysql atau database yang kamu gunakan tidak menggunakan password maka hapus bagian passwordnya
-   ```sh
-   DB_PASSWORD=admin123 menjadi DB_PASSWORD=
-   ```
-6. Buatlah `APP_KEY`.
-   ```sh
-   php artisan key:generate
-   ```
-7. Install Storage.
-   ```sh
-   php artisan storage:link
-   ```
-8. Lakukan migrasi database.
-   ```sh
-   php artisan migrate:fresh --seed
-   ```
-9. Setelah migrasi database telah berhasil, jalankan aplikasinya.
-   ```sh
-   php artisan serve
-   ```
-10. Buka browser anda dan buka `127.0.0.1:8000` untuk menggunakan aplikasinya.
-   
-11. Login:
-    - email: 3337230060@untirta.ac.id password: rama1029 -> User
-    - email: 3337230014@untirta.ac.id password: ismet -> Admin
+---
+
+## 📋 Deskripsi
+
+**Sistem Peminjaman Ruangan** adalah aplikasi web yang dirancang untuk memudahkan proses peminjaman ruangan di lingkungan kampus Universitas Teknokrat Indonesia. 
+
+Aplikasi ini dibangun menggunakan:
+- **Backend**: PHP dengan framework Laravel 9
+- **Database**: MySQL
+- **Frontend**: Bootstrap 5 + jQuery
+
+Dengan antarmuka yang sederhana dan fungsional, pengguna dapat:
+- ✅ Melihat ketersediaan ruangan secara real-time
+- ✅ Melakukan reservasi dengan cepat
+- ✅ Mendapatkan konfirmasi status peminjaman
+- ✅ Mengelola data ruangan (admin)
+
+---
+
+## 📸 Preview Aplikasi
+
+| Halaman Utama | Dashboard Admin |
+|:-------------:|:---------------:|
+| <img src="public/img/p1.jpg" width="400"> | <img src="public/img/p2.jpg" width="400"> |
+
+| Daftar Ruangan | Form Peminjaman |
+|:--------------:|:---------------:|
+| <img src="public/img/p3.jpg" width="400"> | <img src="public/img/p4.jpg" width="400"> |
+
+---
+
+## ⚙️ Persyaratan Sistem
+
+Pastikan komputer Anda sudah terinstall:
+
+| Software | Versi Minimum | Keterangan |
+|----------|--------------|------------|
+| PHP | 8.0.2+ | Bahasa pemrograman utama |
+| Composer | 2.x | Package manager PHP |
+| MySQL | 5.7+ | Database server |
+| Node.js | 14+ | (Opsional) Untuk compile assets |
+
+---
+
+## 🚀 Fitur Utama
+
+### 👤 Untuk User (Mahasiswa/Dosen)
+- 🔐 Login & Register
+- 📋 Lihat daftar ruangan yang tersedia
+- 📝 Ajukan peminjaman ruangan
+- 📊 Lihat riwayat peminjaman
+
+### 👨‍💼 Untuk Admin
+- 📊 Dashboard overview
+- 🏠 Kelola data ruangan (CRUD)
+- 👥 Kelola data user & admin
+- ✅ Approve/Reject permintaan peminjaman
+- 📈 Lihat semua transaksi peminjaman
+
+---
+
+## 📦 Instalasi
+
+### Langkah 1: Clone Repository
+
+```bash
+git clone https://github.com/IsmetMaulanaAzhari/Pinjam_Ruangan.git
+```
+
+### Langkah 2: Masuk ke Folder Project
+
+```bash
+cd Pinjam_Ruangan
+```
+
+### Langkah 3: Install Dependencies
+
+```bash
+composer install
+```
+
+> 💡 **Tips**: Jika terjadi error, coba jalankan `composer update` terlebih dahulu.
+
+### Langkah 4: Konfigurasi Environment
+
+```bash
+# Copy file environment
+cp .env.example .env
+
+# Atau di Windows
+copy .env.example .env
+```
+
+### Langkah 5: Konfigurasi Database
+
+Buka file `.env` dan sesuaikan konfigurasi database:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=pinjam_ruangan    # Nama database (buat dulu di MySQL)
+DB_USERNAME=root              # Username MySQL Anda
+DB_PASSWORD=                  # Password MySQL (kosongkan jika tidak ada)
+```
+
+### Langkah 6: Generate Application Key
+
+```bash
+php artisan key:generate
+```
+
+### Langkah 7: Setup Storage Link
+
+```bash
+php artisan storage:link
+```
+
+### Langkah 8: Migrasi Database
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+> ⚠️ **Peringatan**: Perintah ini akan menghapus semua data dan membuat ulang tabel dengan data dummy.
+
+### Langkah 9: Jalankan Aplikasi
+
+```bash
+php artisan serve
+```
+
+### Langkah 10: Akses Aplikasi
+
+Buka browser dan akses: **http://127.0.0.1:8000**
+
+---
+
+## 🔑 Akun Default
+
+Setelah instalasi, Anda dapat login menggunakan akun berikut:
+
+### Admin
+| Field | Value |
+|-------|-------|
+| Email | `3337230014@untirta.ac.id` |
+| Password | `ismet` |
+
+### User (Mahasiswa)
+| Field | Value |
+|-------|-------|
+| Email | `3337230060@untirta.ac.id` |
+| Password | `rama1029` |
+
+---
+
+## 📂 Struktur Folder
+
+```
+Pinjam_Ruangan/
+├── app/
+│   ├── Http/Controllers/    # Controller aplikasi
+│   ├── Models/              # Model database
+│   └── ...
+├── database/
+│   ├── migrations/          # File migrasi database
+│   └── seeders/             # Data dummy untuk testing
+├── public/
+│   ├── img/                 # Gambar statis
+│   ├── js/                  # File JavaScript
+│   └── css/                 # File CSS
+├── resources/
+│   └── views/               # File Blade template
+├── routes/
+│   └── web.php              # Routing aplikasi
+└── ...
+```
+
+---
+
+## 🛠️ Troubleshooting
+
+### Error: "No application encryption key has been specified"
+```bash
+php artisan key:generate
+```
+
+### Error: "SQLSTATE[HY000] [1045] Access denied"
+Periksa konfigurasi database di file `.env`
+
+### Error: "Class not found"
+```bash
+composer dump-autoload
+```
+
+### Gambar tidak muncul
+```bash
+php artisan storage:link
+```

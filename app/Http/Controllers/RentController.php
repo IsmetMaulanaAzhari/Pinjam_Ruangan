@@ -1,39 +1,49 @@
 <?php
 
 namespace App\Http\Controllers;
-public function store(Request $request)
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Traits\RoomAvailabilityTrait;
+
+class RentController extends Controller
 {
-    $request->validate([
-        'ruangan_id' => 'required',
-        'tanggal_peminjaman' => 'required|date',
-        'jam_mulai' => 'required',
-        'jam_selesai' => 'required|after:jam_mulai',
-    ]);
+    use RoomAvailabilityTrait;
+    
+    public function store(Request $request)
+    {
+        // Validasi input dasar
+        $request->validate([
+            'nama_ruangan' => 'required',
+            'mulai_pinjam' => 'required|date',
+            'selesai_pinjam' => 'required|date|after:mulai_pinjam',
+            'tujuan' => 'required|string',
+        ]);
 
-    $cekBentrok = Peminjaman::where('ruangan_id', $request->ruangan_id)
-        ->where('tanggal_peminjaman', $request->tanggal_peminjaman)
-        ->where(function($query) use ($request) {
-            $query->whereBetween('jam_mulai', [$request->jam_mulai, $request->jam_selesai])
-                  ->orWhereBetween('jam_selesai', [$request->jam_mulai, $request->jam_selesai])
-                  ->orWhere(function($query) use ($request) {
-                      $query->where('jam_mulai', '<', $request->jam_mulai)
-                            ->where('jam_selesai', '>', $request->jam_selesai);
-                  });
-        })
-        ->exists();
+        // Dapatkan room_id dari nama ruangan
+        $room = DB::table('rooms')->where('name', $request->nama_ruangan)->first();
+        
+        if (!$room) {
+            return back()->with('error', 'Ruangan tidak ditemukan.');
+        }
 
-    if ($cekBentrok) {
-        return back()->withErrors(['Ruangan sudah dibooking pada jam tersebut.'])->withInput();
+        // Gunakan trait untuk cek ketersediaan
+        if (!$this->isRoomAvailable($room->id, $request->mulai_pinjam, $request->selesai_pinjam)) {
+            return back()->with('error', 'Ruangan sudah dipinjam pada waktu yang sama.');
+        }
+
+        // Simpan data jika tidak bentrok
+        DB::table('peminjamans')->insert([
+            'nama_ruangan'   => $request->nama_ruangan,
+            'nama_peminjam'  => Auth::user()->name,
+            'mulai_pinjam'   => $request->mulai_pinjam,
+            'selesai_pinjam' => $request->selesai_pinjam,
+            'tujuan'         => $request->tujuan,
+            'status_pinjam'  => 'pending',
+            'created_at'     => now(),
+        ]);
+
+        return redirect()->back()->with('success', 'Peminjaman berhasil diajukan.');
     }
-
-    // Jika tidak bentrok, simpan data
-    Peminjaman::create([
-        'user_id' => auth()->id(),
-        'ruangan_id' => $request->ruangan_id,
-        'tanggal_peminjaman' => $request->tanggal_peminjaman,
-        'jam_mulai' => $request->jam_mulai,
-        'jam_selesai' => $request->jam_selesai,
-    ]);
-
-    return redirect()->route('rent.index')->with('success', 'Peminjaman berhasil disimpan.');
 }

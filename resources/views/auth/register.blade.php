@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>{{ $title }} | Universitas Teknokrat Indonesia</title>
+    <title>{{ $title }} | Universitas Sultan Ageng Tirtayasa</title>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:400,700'>
     <link rel="stylesheet" href="./style.css">
 

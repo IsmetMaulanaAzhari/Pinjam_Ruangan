@@ -36,12 +36,16 @@
                                 class="text-danger fst-italic fw-lighter" style="font-size: 12px">
                                 *Max 2 Mb</span></label>
                         <input class="form-control @error('img') is-invalid @enderror" type='file' id='img'
-                            name='img' />
+                            name='img' accept="image/*" onchange="previewImage(event, 'addRoomPreview')" />
                         @error('img')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
+                        <!-- Preview Area -->
+                        <div class="mt-2">
+                            <img id="addRoomPreview" src="#" alt="Preview" style="max-width: 200px; max-height: 200px; display: none; border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
+                        </div>
                     </div>
                     <div class="mb-3 row">
                         <div class="col-6">
