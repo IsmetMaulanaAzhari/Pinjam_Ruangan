@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('container')
     <div class="preloader">
@@ -93,7 +93,7 @@
                                             </td>
                                         </tr>
                                     @endif
-                                <tbody>
+                                </tbody>
                             </table>
                         </div>
                     </div>

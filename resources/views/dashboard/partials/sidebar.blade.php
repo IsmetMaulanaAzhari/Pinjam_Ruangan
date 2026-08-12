@@ -13,7 +13,7 @@
     <h5 class="sidebar-title">Menu</h5>
 
 
-    @if (auth()->user()->role_id === 1)
+    @if (auth()->check() && auth()->user()->role_id === 1)
         {{-- <a href="/dashboard/overview" class="sidebar-item ,mxss9" onclick="toggleActive(this)">
             <!-- <img src="./assets/img/global/grid.svg" alt=""> -->
 
@@ -175,3 +175,7 @@
 
 
 </aside>
+
+@if(auth()->check() && auth()->user()->role_id)
+    {{ auth()->user()->role_id }}
+@endif

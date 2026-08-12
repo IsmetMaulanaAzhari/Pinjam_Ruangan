@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('container')
     <div class="preloader">
@@ -24,7 +24,7 @@
                     <div class="hero-content">
                         <h2 class="mb-30 wow fadeInUp" data-wow-delay=".2s">Sistem Peminjaman Ruangan</h2>
                         <p class="wow fadeInUp" data-wow-delay=".4s">Selamat datang di Website Peminjaman Ruangan Fakultas Teknik Universitas Sultan Ageng Tirtayasa.</p>
-                        <d class="hero-btns">
+                        <div class="hero-btns">
                             <a href="#skill" class="main-btn wow fadeInUp" data-wow-delay=".6s">Panduan</a>
                         </div>
                     </div>

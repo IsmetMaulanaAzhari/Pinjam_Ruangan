@@ -201,14 +201,4 @@
     </div>
     <script src="./script.js"></script>
 
-</body>
-<script>
-    let form = document.querySelecter('form');
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        return false;
-    });
-</script>
-
 </html>
